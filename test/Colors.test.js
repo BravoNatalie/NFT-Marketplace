@@ -72,4 +72,29 @@ contract('Color', (accounts) => {
       assert.equal(result.join(','), expected.join(','))
     })
   })
+
+  describe('selling', async () => {
+
+    it('put for sale', async () => {
+      const token = await contract.mint('#810034')
+      const tokenId = token.logs[0].args.tokenId.toNumber()
+      let price = 20
+      await contract.allowBuy(tokenId, price)
+      let priceToken = await contract.tokenIdToPrice(tokenId)
+
+      assert.equal(priceToken.toNumber(), price, 'price is correct')
+    })
+
+    it('remove from sale', async () => {
+      const lastTokenId = await contract.totalSupply()
+      await contract.disallowBuy(lastTokenId)
+      let priceToken = await contract.tokenIdToPrice(lastTokenId)
+
+      assert.equal(priceToken.toNumber(), 0, 'price is correct')
+    })
+
+    it('buy', async () => {
+
+    })
+  })
 })

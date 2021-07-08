@@ -58,10 +58,18 @@ class App extends Component {
 
       this.setState({contract, totalSupply})
       
-      for (var i=1; i <= totalSupply; i++){
-        let color = await contract.methods.colors(i - 1).call()
+      for (var tokenId=1; tokenId <= totalSupply; tokenId++){
+        console.log(tokenId)
+        let color = await contract.methods.colors(tokenId-1).call()
+        let owner = await contract.methods.ownerOf(tokenId).call()
+        let price = await contract.methods.tokenIdToPrice(tokenId-1).call()
+        
         this.setState({
-          colors: [...this.state.colors, color]
+          colors: [...this.state.colors, {
+            hex: color,
+            owner,
+            price: price.toNumber()
+          }]
         })
       }
      
@@ -79,6 +87,10 @@ class App extends Component {
           colors: [...this.state.colors, color]
         })
       })
+  }
+
+  buy = (id) => {
+    //this.state.contract.methods.buy(id).send({from: this.state.account})
   }
 
   constructor(props) {
@@ -100,6 +112,7 @@ class App extends Component {
           <a
             className="navbar-brand col-sm-3 col-md-2 mr-0"
             target="_blank"
+            href="https://github.com/bravonatalie"
             rel="noopener noreferrer"
           >
             Color token
@@ -140,8 +153,11 @@ class App extends Component {
             {this.state.colors.map((color, key) => {
               return (
                 <div key={key} className="col-md-3 mb-3">
-                  <div className="token" style={{ backgroundColor: color}}></div>
-                  <div>{color}</div>
+                  <div className="token" style={{ backgroundColor: color.hex}}></div>
+                  <div>{color.hex}</div>
+                  <div>Owner: ...{color.owner.slice(-4)}</div>
+                  <div>{color.price} ETH</div>
+                  <div><button onClick={() => {} }>Buy</button></div>
                 </div>
               )
             })}
