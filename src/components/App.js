@@ -59,10 +59,11 @@ class App extends Component {
       this.setState({contract, totalSupply})
       
       for (var tokenId=1; tokenId <= totalSupply; tokenId++){
-        console.log(tokenId)
         let color = await contract.methods.colors(tokenId-1).call()
         let owner = await contract.methods.ownerOf(tokenId).call()
         let price = await contract.methods.tokenIdToPrice(tokenId-1).call()
+
+        console.log(tokenId + ": " + color + ", " + price + ", " + owner)
         
         this.setState({
           colors: [...this.state.colors, {
@@ -89,8 +90,20 @@ class App extends Component {
       })
   }
 
-  buy = (id) => {
-    //this.state.contract.methods.buy(id).send({from: this.state.account})
+  buy = (id, price) => {
+    try {
+      this.state.contract.methods.buy(id)
+        .send({gas: 210000, value: price, from: this.state.account})
+        .once('receipt', (receipt) => {
+          let newColors = [...this.state.colors]
+          newColors[id] = {...newColors[id], price: 0}
+          this.setState({
+            colors: newColors
+          })
+        })
+    } catch(e){
+      console.log("Error, buying: ", e)
+    }
   }
 
   constructor(props) {
@@ -157,7 +170,7 @@ class App extends Component {
                   <div>{color.hex}</div>
                   <div>Owner: ...{color.owner.slice(-4)}</div>
                   <div>{color.price} ETH</div>
-                  <div><button onClick={() => {} }>Buy</button></div>
+                  <div><button onClick={() => this.buy(key, color.price) }>Buy</button> </div>
                 </div>
               )
             })}
