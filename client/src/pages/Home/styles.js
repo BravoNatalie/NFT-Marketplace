@@ -20,33 +20,37 @@ const useStyles = makeStyles({
     // width: '100%',
   },
   main: {
+    backgroundColor: "white",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
     padding: "0 1rem",
     '& img': {
-      width: "80%"
+      width: "55%"
     },
     '& p': {
-      margin: "3rem 4.5rem 5rem 4rem",
+      margin: "3rem 8rem 4rem 8.5rem",
       fontSize: "1.2rem",
       textAlign: "center"
     },
     '& button': {
       textTransform: 'none',
-      fontSize: "1.2rem"
+      fontSize: "1.2rem",
+      fontWeight: "400",
+      background: '#3F51B5'
     }
 
   },
   allNfts: {
     marginTop: "2rem",
-    padding: "0 2rem"
+    padding: "0 2rem",
   },
   title: {
-    fontSize: "2.2rem",
-    fontWeight: "500",
-     marginBottom: "1rem"
+    fontFamily: "sans-serif",
+    fontSize: "1.8rem",
+    fontWeight: "600",
+    marginBottom: "1rem",
   }
 });
 

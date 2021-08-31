@@ -143,7 +143,7 @@ const Home = () => {
     <div className={classes.homepage}>
       <section className={classes.banner}>
         <Grid container spacing={0} xs={12} className={classes.gridBanner}>
-          <Grid item xs={4}>
+          <Grid item xs={3}>
             <Grid container spacing={0}>
               <Grid item xs={8}>
                 <img src={dreaming} alt="dreaming" className={classes.images} />
@@ -159,14 +159,14 @@ const Home = () => {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={4} className={classes.main}>
+          <Grid item xs={6} className={classes.main}>
             <img src={galerie} alt="galerie" />
             <Typography>A decentralized NFT marketplace where you can expose your art.</Typography>
             <Button variant="contained" color="primary" disableElevation>
               Mint your art
             </Button>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={3}>
             <Grid container spacing={0}>
               <Grid item xs={8}>
                 <img src={stones} alt="dreaming" className={classes.images} />
@@ -185,11 +185,11 @@ const Home = () => {
         </Grid>
       </section>
       <section className={classes.allNfts}>
-        <Typography className={classes.title}>All NFTs</Typography>
+        <Typography className={classes.title}>Latest artwork</Typography>
         <Grid
           container
           direction="row"
-          justifyContent="flex-start"
+          justifyContent="center"
           alignItems="center"
           spacing={2}
         >

@@ -1,6 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
+  header: {
+    background: '#3F51B5'
+  },
   logo: {
     width: "10rem"
   },

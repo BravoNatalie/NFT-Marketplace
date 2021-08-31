@@ -4,6 +4,8 @@ const spaceUnits = 2;
 
 const useStyles = makeStyles({
   root: {
+    // maxWidth: "12.5rem",
+    width: "20rem",
     minWidth: 200,
     borderRadius: "0.6rem",
     margin: "auto",

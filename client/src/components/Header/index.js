@@ -18,7 +18,7 @@ const Header = () => {
   return (
     <React.Fragment>
       <CssBaseline />
-      <AppBar>
+      <AppBar className={classes.header}>
         <Toolbar>
           <img src={logo} alt="Galerie" className={classes.logo}/>
           <div className={classes.account}>

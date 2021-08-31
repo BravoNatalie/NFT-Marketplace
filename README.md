@@ -1,5 +1,17 @@
-# NFT Marketplace
+<h1 align=center>
+<img src="https://res.cloudinary.com/nataliebravo/image/upload/v1630406853/NFT/banner_npzzzz.png" />
+</h1>
 
+<div align="center">
+  
+![License](https://img.shields.io/badge/license-MIT-737CA1?style=flat-square) 
+![Node_Badge](https://img.shields.io/badge/node-14.16.1-green?style=flat-square)
+![Npm_Badge](https://img.shields.io/badge/npm-6.14.12-yellow?style=flat-square)
+![React Badge](https://img.shields.io/badge/React-17.0.2-45b8d8?style=flat-square)
+![Solidity_Badge](https://img.shields.io/badge/Solidity-%5E8.0.0-363636?style=flat-square)
+![Truffle](https://img.shields.io/badge/Truffle-5.3.14-F0E8E0?style=flat-square)
+[![Made by NatalieBravo](https://img.shields.io/badge/made%20by-NatalieBravo-blueviolet?style=flat-square)](https://www.linkedin.com/in/nataliebravo/)
+</div>
 # Summary
 
 - [About](#about)
@@ -13,13 +25,18 @@
 
 ## :information_source: About
 
-The NFT Marketplace is a platform that enables the creation, sale, and purchase of digital art NFTs.
+Galerie is a NFT Marketplace that enables the creation, sale, and purchase of digital art as NFTs.
 
 
 <a id='preview'/>
 
 ## :framed_picture: Preview
 
+Check out how it looks:
+
+<p align="center">
+ <img alt="Homepage print"   src="https://res.cloudinary.com/nataliebravo/image/upload/v1630412771/NFT/galerie-homepage_kznhvx.png" >
+<p />
 
 <a id='architecture' />
 
@@ -45,7 +62,7 @@ This project was developed with the following technologies:
   - [Axios](https://github.com/axios/axios)
   - [Redux](https://redux.js.org/)
   - [Web3.js](https://web3js.readthedocs.io/en/v1.3.4/)
-  - [Semantic UI React](https://react.semantic-ui.com/)
+  - [Material UI](https://material-ui.com/pt/)
 
 #### **Backend** <sub><sup>Express</sup></sub>
   - [Express](https://expressjs.com/pt-br/)
@@ -69,17 +86,20 @@ To run the application you'll need:
 * [Truffle](https://www.trufflesuite.com/)
 * [Ganache](https://www.trufflesuite.com/ganache)
 * Clone the repository:
-  * ```$ git clone https://github.com/bitshopp/nft-case-studies.git ```
+  * ```$ git clone https://github.com/BravoNatalie/NFT-Marketplace.git ```
 
 
 Now go to project folder and run:
 
 
 ```bash
-$ cd nft-quorum-poc
+$ cd NFT-Marketplace
 
 # install the dependencies
 $ yarn
+
+# run ganache
+$ ganache-cli
 
 # deploy de contracts on the blockchain
 $ truffle migrate
@@ -99,9 +119,18 @@ $ yarn start
 
 ## :page_with_curl: License
 
-This project is under the **MIT license**. See the [LICENSE](https://github.com/bitshopp/nft-case-studies/blob/master/nft-quorum-poc/LICENSE) for more information.
+This project is under the **MIT license**. See the [LICENSE](https://github.com/BravoNatalie/NFT-Marketplace/blob/master/LICENSE) for more information.
 
 
-## Authors
+## :mailbox_with_mail: Get in touch!
 
-  Made by <b>Lorrane Pärrilla</b>, <b>Natalie Bravo</b> and <b>Vinicius Freire</b>.
+<p align="center">
+<a href="https://www.linkedin.com/in/nataliebravo/" target="_blank" >
+  <img alt="Linkedin - Natalie Bravo" src="https://img.shields.io/badge/Linkedin--%23F8952D?style=social&logo=linkedin">
+</a>
+<a href="mailto:natalie.bravo@ice.ufjf.br" target="_blank" >
+  <img alt="Email - Natalie Bravo" src="https://img.shields.io/badge/Email--%23F8952D?style=social&logo=gmail">
+</a> 
+<br/>
+  Made with :coffee: and ❤️ by <b>Natalie Bravo</b>.
+<p/>

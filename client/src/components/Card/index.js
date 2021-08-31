@@ -24,8 +24,8 @@ const Card = ({ tokenId, name, image, price, owner, isForSale }) => {
           <CardMedia
             component="img"
             alt={name}
-            height="140"
-            image="https://img.cryptokitties.co/0x06012c8cf97bead5deae237070f9587f8e7a266d/1.png"
+            height="240"
+            image={image}
             title={name}
           />
           <CardContent className={classes.content}>
