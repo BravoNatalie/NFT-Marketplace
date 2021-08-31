@@ -12,6 +12,7 @@
 ![Truffle](https://img.shields.io/badge/Truffle-5.3.14-F0E8E0?style=flat-square)
 [![Made by NatalieBravo](https://img.shields.io/badge/made%20by-NatalieBravo-blueviolet?style=flat-square)](https://www.linkedin.com/in/nataliebravo/)
 </div>
+
 # Summary
 
 - [About](#about)
