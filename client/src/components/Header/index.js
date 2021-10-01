@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -20,7 +21,9 @@ const Header = () => {
       <CssBaseline />
       <AppBar className={classes.header}>
         <Toolbar>
-          <img src={logo} alt="Galerie" className={classes.logo}/>
+          <Link to="/">
+            <img src={logo} alt="Galerie" className={classes.logo}/>
+          </Link>
           <div className={classes.account}>
             <AccountBalanceWalletIcon titleAccess="Wallet Address" className={classes.walletIcon}/>
             <Typography variant="subtitle1">{account.slice(0,7)}...{account.slice(-4)}</Typography>

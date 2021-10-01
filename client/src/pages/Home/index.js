@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Button from '@material-ui/core/Button';
@@ -54,6 +55,7 @@ const Home = () => {
             ArtToken.abi,
             ArtToken.networks[networkId].address
           );
+          // console.log("Contract: ", artTokenContract);
           const marketplaceContract = new web3.eth.Contract(
             ArtMarketplace.abi,
             ArtMarketplace.networks[networkId].address
@@ -162,9 +164,11 @@ const Home = () => {
           <Grid item xs={6} className={classes.main}>
             <img src={galerie} alt="galerie" />
             <Typography>A decentralized NFT marketplace where you can expose your art.</Typography>
-            <Button variant="contained" color="primary" disableElevation>
-              Mint your art
-            </Button>
+            <Link to="/create-nft">
+              <Button variant="contained" color="primary" disableElevation>
+                Mint your art
+              </Button>
+            </Link>
           </Grid>
           <Grid item xs={3}>
             <Grid container spacing={0}>

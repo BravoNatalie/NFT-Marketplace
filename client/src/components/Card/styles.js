@@ -39,7 +39,7 @@ const useStyles = makeStyles({
     '&:active': {
       boxShadow: 'none',
       backgroundColor: "#DDE1E3"
-  },
+    },
   },
   price: {
     display: 'flex',
