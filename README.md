@@ -20,6 +20,7 @@
 - [Architecture and Client-side Flow](#architecture)
 - [Built with](#technologies)
 - [How to Use](#how-to-use)
+- [TODO](#todo)
 - [License](#license)
 
 <a id='about'/>
@@ -115,6 +116,16 @@ $ cd backend
 $ yarn
 $ yarn start
 ```
+
+<a id='todo'/>
+
+## :page_with_curl: TODO
+
+There are some things to be done in the project:
+  - State persistence;
+  - Revise front-end call to the buy and sell functions on the blockchain;
+  - Error handling;
+  - NFT cards to reflect the true information of price coming from the blockchain.
 
 <a id='license'/>
 

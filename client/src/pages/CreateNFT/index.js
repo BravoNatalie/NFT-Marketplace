@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import CancelOutlinedIcon  from "@material-ui/icons/CancelOutlined";
 import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from "@material-ui/core/TextField";
@@ -14,6 +14,7 @@ import { api } from "../../services/api";
 
 const CreateNFT = () => {
   const classes = useStyles();
+  const history = useHistory();
 
   const account = useSelector((state) => state.allNft.account);
   const artTokenContract = useSelector(
@@ -85,6 +86,7 @@ const CreateNFT = () => {
       //   price: 0,
       //   isSold: null
       // }]);
+      history.push('/');
     } catch (error) {
       console.error("Error, minting: ", error);
       alert("Error while minting!");

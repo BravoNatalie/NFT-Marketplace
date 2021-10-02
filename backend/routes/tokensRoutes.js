@@ -28,7 +28,7 @@ const tokensRoutes = (app) => {
     tokens[tokenId] = {
       name,
       description,
-      image: filename
+      image: req.protocol + '://' + req.get('host') + "/images/" + filename
     };
 
     fs.writeFileSync(dbFile, JSON.stringify(tokens));
