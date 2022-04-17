@@ -8,9 +8,19 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import Web3 from "web3";
 
+
+// import { DateRangePicker, DateRange } from '@mui/x-date-pickers-pro/DateRangePicker';
+// import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+// import Box from '@mui/material/Box';
+
 import { selectedNft, removeSelectedNft } from "../../redux/actions/nftActions";
 
 import { useStyles } from "./styles.js";
+import DatePicker,{registerLocale, setDefaultLocale} from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import zhCN from 'date-fns/locale/zh-CN';
+registerLocale('zh-CN', zhCN)
 
 const Item = () => {
   const classes = useStyles();
@@ -31,13 +41,30 @@ const Item = () => {
     owner,
     creator,
     description,
+    duration,
     tokenId,
     saleId,
     isForSale,
     isSold,
   } = nft;
+
+  // const [value, setValue] = React.useState([null, null]);
   const dispatch = useDispatch();
 
+
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(null);
+  const onChange = (dates) => {
+    const [start, end] = dates;
+    setStartDate(start);
+    setEndDate(end);
+  };
+
+
+  /*Effect Hook 可以让你在函数组件中执行副作用操作,
+  * 可以把 useEffect Hook
+  * 看做 componentDidMount，componentDidUpdate 和 componentWillUnmount 这三个函数的组合。
+  * */
   useEffect(() => {
     if (nftId && nftId !== "" && nftItem) dispatch(selectedNft(nftItem[0]));
     return () => {
@@ -72,6 +99,16 @@ const Item = () => {
     } catch (error) {
       console.error("Error, buying: ", error);
       alert("Error while buying!");
+    }
+  };
+
+  async function edit(saleId,description,duration,price) {
+    try {
+
+      alert("!");
+    } catch (error) {
+      console.error("Error, editing: ", error);
+      alert("Error while editing!");
     }
   }
 
@@ -132,6 +169,20 @@ const Item = () => {
                     fullWidth
                     defaultValue={description}
                   />
+
+                    <label htmlFor="duration">Duration
+                      <DatePicker
+                          locale="zh-CN"
+                          selected={startDate}
+                          onChange={onChange}
+                          startDate={startDate}
+                          endDate={endDate}
+                          selectsRange
+                          inline
+                      />
+                    </label>
+
+
                   <TextField
                     label="price"
                     name="price"
@@ -146,25 +197,39 @@ const Item = () => {
                     fullWidth
                     disabled
                   />
-                  {owner === account && !isForSale && (
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={() => putForSale(tokenId, 200)}
-                    >
-                      Sell
-                    </Button>
-                  )}
-                  {owner !== account && isForSale && (
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={() => buy(saleId, 200)}
-                    >
-                      Buy
-                    </Button>
-                  )}
+                  <Grid item xs={12} direction="row">
+                      {owner === account && !isForSale && (
+                          <Button
+                              variant="contained"
+                              color="primary"
+                              onClick={() => putForSale(tokenId, 200)}
+                          >
+                            Sell
+                          </Button>
+                      )}
+
+                      {owner !== account && isForSale && (
+                          <Button
+                              variant="contained"
+                              color="primary"
+                              onClick={() => buy(saleId, 200)}
+                          >
+                            Buy
+                          </Button>
+                      )}
+                      {owner == account&& !isSold &&(
+                          <Button
+                              variant="outlined"
+                              color="primary"
+                              onClick={() => edit(tokenId, 200)}
+                          >
+                            Edit
+                          </Button>
+                      )}
+                  </Grid>
+
                 </fieldset>
+
               </Grid>
             </Grid>
           </section>

@@ -52,6 +52,7 @@ const useStyles = makeStyles({
           alignItems: "center",
           border: "0",
         }
+
       },
     }
   },

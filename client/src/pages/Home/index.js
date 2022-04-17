@@ -88,6 +88,7 @@ const Home = () => {
               uri: item.uri,
               isForSale: false,
               saleId: null,
+              // price: response.data.price,
               price: 0,
               isSold: null,
             });
