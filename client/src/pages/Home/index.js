@@ -142,7 +142,7 @@ const Home = () => {
   const nftItem = useSelector((state) => state.allNft.nft);
 
   return (
-    <div className={classes.homepage}>
+    <box className={classes.homepage}>
       <section className={classes.banner}>
         <Grid container spacing={0} xs={12} className={classes.gridBanner}>
           <Grid item xs={3}>
@@ -204,7 +204,7 @@ const Home = () => {
           ))}
         </Grid>
       </section>
-    </div>
+    </box>
   );
 };
 
