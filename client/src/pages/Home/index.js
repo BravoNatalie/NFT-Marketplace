@@ -78,6 +78,7 @@ const Home = () => {
               });
             console.log("response: ", response);
 
+            // console.log(response.data.price);
             itemsList.push({
               name: response.data.name,
               description: response.data.description,
@@ -88,10 +89,13 @@ const Home = () => {
               uri: item.uri,
               isForSale: false,
               saleId: null,
-              price: 0,
+              // price:0,
+              // price: item.price,
+              price: response.data.price,
               isSold: null,
             });
           }
+
           if (totalItemsForSale > 0) {
             for (var saleId = 0; saleId < totalItemsForSale; saleId++) {
               let item = await marketplaceContract.methods
@@ -138,6 +142,7 @@ const Home = () => {
   }, [dispatch]);
 
   console.log("Nft :", nft);
+
 
   const nftItem = useSelector((state) => state.allNft.nft);
 
@@ -189,7 +194,7 @@ const Home = () => {
         </Grid>
       </section>
       <section className={classes.allNfts}>
-        <Typography className={classes.title}>Latest artwork</Typography>
+        <Typography className={classes.title}>All artwork</Typography>
         <Grid
           container
           direction="row"

@@ -29,22 +29,23 @@ const CreateNFT = () => {
   });
 
   function handleInputChange(event) {
-    let { name, value } = event.target;
+    let { name, value ,price} = event.target;
     // if(name === 'image'){
     //   value = event.target.files[0];
     // }
-    setFormData({ ...formData, [name]: value });
+    setFormData({ ...formData, [name]: value ,[price]: price});
   }
 
   async function createNFT(event) {
     event.preventDefault();
-    const { title, description } = formData;
+    const { title, description ,price} = formData;
 
     console.log("title: " + title);
 
     const data = new FormData();
     data.append("name", title);
     data.append("description", description);
+    data.append("price", price);
 
     if(selectedFile){
       data.append('img', selectedFile);
@@ -62,7 +63,7 @@ const CreateNFT = () => {
       });
       console.log(response);
 
-      mint(response.data.message);
+      await mint(response.data.message);
     } catch (error) {
       console.log(error);
       // error.response.data
