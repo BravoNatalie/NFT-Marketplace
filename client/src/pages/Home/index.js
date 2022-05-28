@@ -76,7 +76,8 @@ const Home = () => {
               .catch((err) => {
                 console.log("Err: ", err);
               });
-            console.log("response: ", response);
+            console.log("home----response: ", response);
+            console.log("home----item: ", item);
 
             itemsList.push({
               name: response.data.name,
@@ -88,11 +89,11 @@ const Home = () => {
               uri: item.uri,
               isForSale: false,
               saleId: null,
-              // price: response.data.price,
-              price: 0,
+              price:response.data.price,
               isSold: null,
             });
           }
+
           if (totalItemsForSale > 0) {
             for (var saleId = 0; saleId < totalItemsForSale; saleId++) {
               let item = await marketplaceContract.methods
@@ -110,7 +111,6 @@ const Home = () => {
                 ...itemsList[itemListIndex],
                 isForSale: active,
                 saleId: item.id,
-                price: item.price,
                 isSold: item.isSold,
               };
             }
@@ -121,7 +121,7 @@ const Home = () => {
           dispatch(setMarketContract(marketplaceContract));
           dispatch(setNft(itemsList));
         } catch (error) {
-          console.error("Error", error);
+          console.error("home--------------Error", error);
           alert(
             "Contracts not deployed to the current network " +
               networkId.toString()
@@ -139,6 +139,7 @@ const Home = () => {
   }, [dispatch]);
 
   console.log("Nft :", nft);
+
 
   const nftItem = useSelector((state) => state.allNft.nft);
 
@@ -190,7 +191,7 @@ const Home = () => {
         </Grid>
       </section>
       <section className={classes.allNfts}>
-        <Typography className={classes.title}>Latest artwork</Typography>
+        <Typography className={classes.title}>All artwork</Typography>
         <Grid
           container
           direction="row"

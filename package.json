@@ -1,5 +1,9 @@
 {
+  "version": "0.1.0",
+  "private": true,
+  "homepage":"./",
   "dependencies": {
+    "@material-ui/pickers": "^4.0.0-alpha.12",
     "@openzeppelin/contracts": "^4.2.0",
     "@truffle/hdwallet-provider": "^1.4.2",
     "@types/chai": "^4.2.21",

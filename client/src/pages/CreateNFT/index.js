@@ -6,14 +6,12 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 
+
 import { useStyles } from "./styles.js";
 
 import DropZone from "../../components/DropZone";
 
 import { api } from "../../services/api";
-
-
-
 
 const CreateNFT = () => {
   const classes = useStyles();
@@ -31,6 +29,7 @@ const CreateNFT = () => {
     price: "",
   });
 
+
   function handleInputChange(event) {
     let { name, value } = event.target;
     // if(name === 'image'){
@@ -42,7 +41,6 @@ const CreateNFT = () => {
   async function createNFT(event) {
     event.preventDefault();
     const { title, description ,price} = formData;
-
 
     console.log("title: " + title);
 
@@ -56,7 +54,6 @@ const CreateNFT = () => {
       console.log("slectedFile: ", selectedFile);
     }
 
-
     try {
       const totalSupply = await artTokenContract.methods.totalSupply().call();
       data.append("tokenId", Number(totalSupply) + 1);
@@ -66,9 +63,10 @@ const CreateNFT = () => {
           "Content-Type": `multipart/form-data; boundary=${data._boundary}`,
         },
       });
-      console.log(response);
+      console.log("CreateNFT------------response",response);
 
-      mint(response.data.message);
+
+      await mint(response.data.message);
     } catch (error) {
       console.log(error);
       // error.response.data
@@ -89,7 +87,7 @@ const CreateNFT = () => {
       //   uri: tokenMetadataURL,
       //   isForSale: false,
       //   saleId: null,
-      //   price: receipt.price,
+      //   price: 0,
       //   isSold: null
       // }]);
       history.push('/');
@@ -134,8 +132,6 @@ const CreateNFT = () => {
               onChange={handleInputChange}
               fullWidth
             />
-
-
             <TextField
               label="price"
               name="price"
@@ -143,7 +139,7 @@ const CreateNFT = () => {
               value={formData.price}
               onChange={handleInputChange}
               InputProps={{
-                startAdornment: <InputAdornment position="start">ETH</InputAdornment>,
+                startAdornment: <InputAdornment position="start">wei</InputAdornment>,
               }}
               fullWidth
             />

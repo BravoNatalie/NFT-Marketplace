@@ -52,6 +52,7 @@ const useStyles = makeStyles({
   },
 
 
+
   dropzone: {
     minWidth: "300px"
   }
