@@ -67,7 +67,7 @@ const Home = () => {
             .totalItemsForSale()
             .call();
 
-          for (var tokenId = 1; tokenId <= totalSupply; tokenId++) {
+          for (let tokenId = 1; tokenId <= totalSupply; tokenId++) {
             let item = await artTokenContract.methods.Items(tokenId).call();
             let owner = await artTokenContract.methods.ownerOf(tokenId).call();
 
@@ -77,7 +77,6 @@ const Home = () => {
                 console.log("Err: ", err);
               });
             console.log("response: ", response);
-
             itemsList.push({
               name: response.data.name,
               description: response.data.description,
@@ -92,8 +91,9 @@ const Home = () => {
               isSold: null,
             });
           }
+          console.log('itemsList',itemsList);
           if (totalItemsForSale > 0) {
-            for (var saleId = 0; saleId < totalItemsForSale; saleId++) {
+            for (let saleId = 0; saleId < totalItemsForSale; saleId++) {
               let item = await marketplaceContract.methods
                 .itemsForSale(saleId)
                 .call();

@@ -17,12 +17,7 @@ const useStyles = makeStyles((theme) =>({
   },
   root: {
     display: "flex",
-    '& div':{
-      marginLeft: 50,
-    },
-    '& Button':{
-      marginLeft: 550,
-    }
+    marginLeft: "75rem",
   },
   paper: {
     marginRight: theme.spacing(2),
