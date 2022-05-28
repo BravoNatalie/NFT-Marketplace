@@ -17,7 +17,7 @@ import { ReactComponent as EthereumLogo } from "../../assets/ethereum_logo.svg";
 const Card = ({ tokenId, name, image, price, owner,isSold, isForSale }) => {
   let flag_selling = true;
   const classes = useStyles();
-  console.log("image: ", image);
+  // console.log("Card---------image: ", image);
 
   if(isSold==false) flag_selling=false;
 
@@ -54,6 +54,7 @@ const Card = ({ tokenId, name, image, price, owner,isSold, isForSale }) => {
                 viewBox="0 0 400 426.6"
                 titleAccess="ETH"
               />
+              {/*<span>{String(price)}</span>*/}
               <span>{Web3.utils.fromWei(String(price), "ether")}</span>
               {/*<span>{Web3.utils.fromWei(String(price), "ether")}.120000</span>*/}
             </Typography>

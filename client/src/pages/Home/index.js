@@ -76,9 +76,9 @@ const Home = () => {
               .catch((err) => {
                 console.log("Err: ", err);
               });
-            console.log("response: ", response);
+            console.log("home----response: ", response);
+            console.log("home----item: ", item);
 
-            // console.log(response.data.price);
             itemsList.push({
               name: response.data.name,
               description: response.data.description,
@@ -89,9 +89,7 @@ const Home = () => {
               uri: item.uri,
               isForSale: false,
               saleId: null,
-              // price:0,
-              // price: item.price,
-              price: response.data.price,
+              price:response.data.price,
               isSold: null,
             });
           }
@@ -113,7 +111,6 @@ const Home = () => {
                 ...itemsList[itemListIndex],
                 isForSale: active,
                 saleId: item.id,
-                price: item.price,
                 isSold: item.isSold,
               };
             }
@@ -124,7 +121,7 @@ const Home = () => {
           dispatch(setMarketContract(marketplaceContract));
           dispatch(setNft(itemsList));
         } catch (error) {
-          console.error("Error", error);
+          console.error("home--------------Error", error);
           alert(
             "Contracts not deployed to the current network " +
               networkId.toString()

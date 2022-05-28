@@ -5,15 +5,21 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import { useStyles } from "./styles.js";
 
 
+
+
 const DropZone = ({ onFileUploaded })  => {
   const classes = useStyles();
   const [selectedFileUrl, setSelectedFileUrl] = useState('');
 
+
+
   const onDrop = useCallback(acceptedFiles => {
     const file = acceptedFiles[0];
-     
+
     const fileUrl = URL.createObjectURL(file);
-    
+
+
+
     setSelectedFileUrl(fileUrl);
     onFileUploaded(file);
   }, [onFileUploaded]);
@@ -36,6 +42,7 @@ const DropZone = ({ onFileUploaded })  => {
           </p>
         )
       }
+
     </div>
   );
 }

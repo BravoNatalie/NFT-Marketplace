@@ -21,13 +21,14 @@ const tokensRoutes = (app) => {
   // CREATE
   app.post('/tokens', upload.single('img'), (req, res) => {
     const { filename } = req.file;
-    const { tokenId, name, description } = req.body;
+    const { tokenId, name, description ,price} = req.body;
 
     // const tokenId = uuidv4();
 
     tokens[tokenId] = {
       name,
       description,
+      price,
       image: req.protocol + '://' + req.get('host') + "/images/" + filename
     };
 

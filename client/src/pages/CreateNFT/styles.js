@@ -51,6 +51,8 @@ const useStyles = makeStyles({
     justifyContent: "center",
   },
 
+
+
   dropzone: {
     minWidth: "300px"
   }

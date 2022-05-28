@@ -11,23 +11,35 @@ const useStyles = makeStyles({
       maxWidth: "730px",
       background: "#FFF",
       borderRadius: "8px",
-    
+
       display: "flex",
       flexDirection: "column",
+      '& section': {
 
-      '& fieldset': {
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-evenly",
-        alignItems: "center",
+        '& figure': {
+          height: "350px",
 
-        width: "400px",
-        minWidth: "240px",
-        marginTop: "64px",
-        marginLeft: "2rem",
-        minInlineSize: "auto",
-        border: "0",
-      }
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          outline: "0",
+
+          '& img': {
+            width: "100% !important",
+            height: "100% !important",
+            objectFit: "cover !important",
+            borderRadius: "10px",
+          },
+        },
+
+        '& fieldset': {
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-evenly",
+          alignItems: "center",
+          border: "0",
+        }
+      },
     }
   },
 
@@ -44,13 +56,6 @@ const useStyles = makeStyles({
       marginRight: "1.5rem",
     }
   },
-
-  content: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-  },
-
 });
 
 export { useStyles };

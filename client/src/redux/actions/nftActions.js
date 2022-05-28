@@ -22,6 +22,7 @@ export const removeSelectedNft = () => {
 
 export const setAccount = (account) => {
   return {
+
     type: ActionTypes.SET_ACCOUNT,
     payload: account,
   };

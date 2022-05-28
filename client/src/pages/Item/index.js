@@ -103,16 +103,6 @@ const Item = () => {
     }
   };
 
-  async function edit(saleId,description,duration,price) {
-    try {
-
-      alert("Developing......");
-    } catch (error) {
-      console.error("Error, editing: ", error);
-      alert("Error while editing!");
-    }
-  }
-
   return (
       <div className={classes.pageItem}>
         {Object.keys(nft).length === 0 ? (
@@ -201,6 +191,7 @@ const Item = () => {
                           variant="filled"
                           margin="dense"
                           defaultValue={Web3.utils.fromWei(String(price), "ether")}
+                          // defaultValue={String(price)}
                           InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start">ETH</InputAdornment>
@@ -214,7 +205,7 @@ const Item = () => {
                             <Button
                                 variant="contained"
                                 color="primary"
-                                onClick={() => putForSale(tokenId, 200)}
+                                onClick={() => putForSale(tokenId, price)}
                             >
                               Sell
                             </Button>
@@ -224,17 +215,16 @@ const Item = () => {
                             <Button
                                 variant="contained"
                                 color="primary"
-                                onClick={() => buy(saleId, 200)}
+                                onClick={() => buy(saleId, price)}
                             >
                               Buy
                             </Button>
                         )}
-                        {owner == account && !isSold &&(
+                        {owner == account && !isForSale &&(
                             <Link to="/edit-nft">
                               <Button
                                   variant="outlined"
                                   color="primary"
-                                  onClick={() => edit(saleId,description,duration,price)}
                               >
                                 Edit
                               </Button>
