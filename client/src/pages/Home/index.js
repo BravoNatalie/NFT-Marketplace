@@ -67,7 +67,7 @@ const Home = () => {
             .totalItemsForSale()
             .call();
 
-          for (let tokenId = 1; tokenId <= totalSupply; tokenId++) {
+          for (var tokenId = 1; tokenId <= totalSupply; tokenId++) {
             let item = await artTokenContract.methods.Items(tokenId).call();
             let owner = await artTokenContract.methods.ownerOf(tokenId).call();
 
@@ -76,7 +76,9 @@ const Home = () => {
               .catch((err) => {
                 console.log("Err: ", err);
               });
-            console.log("response: ", response);
+            console.log("home----response: ", response);
+            console.log("home----item: ", item);
+
             itemsList.push({
               name: response.data.name,
               description: response.data.description,
@@ -87,13 +89,13 @@ const Home = () => {
               uri: item.uri,
               isForSale: false,
               saleId: null,
-              price: 0,
+              price:response.data.price,
               isSold: null,
             });
           }
-          console.log('itemsList',itemsList);
+
           if (totalItemsForSale > 0) {
-            for (let saleId = 0; saleId < totalItemsForSale; saleId++) {
+            for (var saleId = 0; saleId < totalItemsForSale; saleId++) {
               let item = await marketplaceContract.methods
                 .itemsForSale(saleId)
                 .call();
@@ -109,7 +111,6 @@ const Home = () => {
                 ...itemsList[itemListIndex],
                 isForSale: active,
                 saleId: item.id,
-                price: item.price,
                 isSold: item.isSold,
               };
             }
@@ -120,7 +121,7 @@ const Home = () => {
           dispatch(setMarketContract(marketplaceContract));
           dispatch(setNft(itemsList));
         } catch (error) {
-          console.error("Error", error);
+          console.error("home--------------Error", error);
           alert(
             "Contracts not deployed to the current network " +
               networkId.toString()
@@ -139,10 +140,11 @@ const Home = () => {
 
   console.log("Nft :", nft);
 
+
   const nftItem = useSelector((state) => state.allNft.nft);
 
   return (
-    <box className={classes.homepage}>
+    <div className={classes.homepage}>
       <section className={classes.banner}>
         <Grid container spacing={0} xs={12} className={classes.gridBanner}>
           <Grid item xs={3}>
@@ -189,7 +191,7 @@ const Home = () => {
         </Grid>
       </section>
       <section className={classes.allNfts}>
-        <Typography className={classes.title}>Latest artwork</Typography>
+        <Typography className={classes.title}>All artwork</Typography>
         <Grid
           container
           direction="row"
@@ -204,7 +206,7 @@ const Home = () => {
           ))}
         </Grid>
       </section>
-    </box>
+    </div>
   );
 };
 

@@ -14,11 +14,18 @@ contract ArtMarketplace {
     bool isSold;
   }
 
+//  struct ItemForEdit {
+//    uint256 id;
+//    uint256 tokenId;
+//    uint256 price;
+//  }
+
   ItemForSale[] public itemsForSale;
   mapping(uint256 => bool) public activeItems; // tokenId => ativo?
 
   event itemAddedForSale(uint256 id, uint256 tokenId, uint256 price);
   event itemSold(uint256 id, address buyer, uint256 price);
+  event itemEdit(uint256 id,uint256 tokenId,uint256 price);
 
   constructor(ArtToken _token) {
       token = _token;
@@ -30,6 +37,11 @@ contract ArtMarketplace {
   }
 
   modifier HasTransferApproval(uint256 tokenId){
+    require(token.getApproved(tokenId) == address(this), "Market is not approved");
+    _;
+  }
+
+  modifier HasEditApproval(uint256 tokenId){
     require(token.getApproved(tokenId) == address(this), "Market is not approved");
     _;
   }
@@ -80,8 +92,25 @@ contract ArtMarketplace {
       token.safeTransferFrom(itemsForSale[id].seller, msg.sender, itemsForSale[id].tokenId);
       itemsForSale[id].seller.transfer(msg.value);
 
+
       emit itemSold(id, msg.sender, itemsForSale[id].price);
     }
+
+
+//  function edit(uint256 tokenId)
+//    OnlyItemOwner(tokenId)
+//    HasEditApproval(tokenId)
+//    external
+//    returns (uint256){
+//      edit.push(edit({
+//      title: title,
+//      description: description,
+//      price: price
+//      }));
+//
+//      emit itemEdit(id,tokenId,price);
+//    }
+
 
   function totalItemsForSale() external view returns(uint256) {
     return itemsForSale.length;

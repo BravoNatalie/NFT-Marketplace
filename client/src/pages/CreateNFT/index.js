@@ -5,6 +5,8 @@ import CancelOutlinedIcon  from "@material-ui/icons/CancelOutlined";
 import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+
+
 import { useStyles } from "./styles.js";
 
 import DropZone from "../../components/DropZone";
@@ -27,6 +29,7 @@ const CreateNFT = () => {
     price: "",
   });
 
+
   function handleInputChange(event) {
     let { name, value } = event.target;
     // if(name === 'image'){
@@ -37,13 +40,14 @@ const CreateNFT = () => {
 
   async function createNFT(event) {
     event.preventDefault();
-    const { title, description } = formData;
+    const { title, description ,price} = formData;
 
     console.log("title: " + title);
 
     const data = new FormData();
     data.append("name", title);
     data.append("description", description);
+    data.append("price", price);
 
     if(selectedFile){
       data.append('img', selectedFile);
@@ -59,9 +63,10 @@ const CreateNFT = () => {
           "Content-Type": `multipart/form-data; boundary=${data._boundary}`,
         },
       });
-      console.log(response);
+      console.log("CreateNFT------------response",response);
 
-      mint(response.data.message);
+
+      await mint(response.data.message);
     } catch (error) {
       console.log(error);
       // error.response.data
@@ -134,7 +139,7 @@ const CreateNFT = () => {
               value={formData.price}
               onChange={handleInputChange}
               InputProps={{
-                startAdornment: <InputAdornment position="start">ETH</InputAdornment>,
+                startAdornment: <InputAdornment position="start">wei</InputAdornment>,
               }}
               fullWidth
             />

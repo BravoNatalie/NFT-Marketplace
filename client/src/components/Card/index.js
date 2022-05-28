@@ -14,9 +14,13 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import { useStyles } from "./styles.js";
 import { ReactComponent as EthereumLogo } from "../../assets/ethereum_logo.svg";
 
-const Card = ({ tokenId, name, image, price, owner, isForSale }) => {
+const Card = ({ tokenId, name, image, price, owner,isSold, isForSale }) => {
+  let flag_selling = true;
   const classes = useStyles();
-  console.log("image: ", image);
+  // console.log("Card---------image: ", image);
+
+  if(isSold==false) flag_selling=false;
+
   return (
     <Link to={`/nft/${tokenId}`}>
       <MuiCard className={classes.root}>
@@ -39,7 +43,7 @@ const Card = ({ tokenId, name, image, price, owner, isForSale }) => {
               </Typography>
               <Chip
                 size="small"
-                disabled={true}
+                disabled={flag_selling}
                 label="Selling"
                 className={classes.badge}
               />
@@ -50,9 +54,9 @@ const Card = ({ tokenId, name, image, price, owner, isForSale }) => {
                 viewBox="0 0 400 426.6"
                 titleAccess="ETH"
               />
-              <span>{Web3.utils.fromWei(String(price), "ether")}
-                {price}
-              </span>
+              {/*<span>{String(price)}</span>*/}
+              <span>{Web3.utils.fromWei(String(price), "ether")}</span>
+              {/*<span>{Web3.utils.fromWei(String(price), "ether")}.120000</span>*/}
             </Typography>
             <Divider className={classes.divider} light />
             <Typography
