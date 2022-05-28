@@ -50,7 +50,9 @@ const Card = ({ tokenId, name, image, price, owner, isForSale }) => {
                 viewBox="0 0 400 426.6"
                 titleAccess="ETH"
               />
-              <span>{Web3.utils.fromWei(String(price), "ether")}.120000</span>
+              <span>{Web3.utils.fromWei(String(price), "ether")}
+                {price}
+              </span>
             </Typography>
             <Divider className={classes.divider} light />
             <Typography

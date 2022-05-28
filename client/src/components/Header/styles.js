@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) =>({
   header: {
     background: '#3F51B5'
   },
@@ -14,7 +14,14 @@ const useStyles = makeStyles({
   },
   walletIcon: {
     marginRight: "0.4rem",
-  }
-});
+  },
+  root: {
+    display: "flex",
+    marginLeft: "75rem",
+  },
+  paper: {
+    marginRight: theme.spacing(2),
+  },
+}));
 
 export { useStyles };
