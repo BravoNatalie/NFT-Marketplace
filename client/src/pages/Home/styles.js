@@ -10,6 +10,7 @@ const useStyles = makeStyles({
     height: "100%",
     
   },
+
   banner: {
     // minHeight: "50vh",
     // maxHeight: "50vh",

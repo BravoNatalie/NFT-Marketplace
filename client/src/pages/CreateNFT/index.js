@@ -5,7 +5,6 @@ import CancelOutlinedIcon  from "@material-ui/icons/CancelOutlined";
 import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-
 import { useStyles } from "./styles.js";
 
 import DropZone from "../../components/DropZone";
