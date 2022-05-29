@@ -6,6 +6,8 @@ import Home from "./pages/Home/index";
 import CreateNFT from "./pages/CreateNFT/index";
 import Item from "./pages/Item/index";
 import EditNFT from "./pages/EditNFT/index";
+import Transfer from "./pages/Transfer/index";
+import MyNFTs from "./pages/My NFTs";
 
 import "./App.css";
 
@@ -20,6 +22,8 @@ function App() {
           <Route path="/create-nft" component={CreateNFT} />
           <Route path="/nft/:nftId" component={Item} />
           <Route path="/edit-nft" component={EditNFT} />
+          <Route path="/my-nft" component={MyNFTs} />
+          <Route path="/transfer" component={Transfer} />
           <Route>404 Not Found!</Route>
         </Switch>
       </Router>
