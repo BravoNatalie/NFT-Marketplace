@@ -2,6 +2,10 @@
 pragma solidity ^0.8.0;
 
 import "./ArtToken.sol";
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
 
 contract ArtMarketplace {
   ArtToken private token;
@@ -14,14 +18,10 @@ contract ArtMarketplace {
     bool isSold;
   }
 
-//  struct ItemForEdit {
-//    uint256 id;
-//    uint256 tokenId;
-//    uint256 price;
-//  }
 
   ItemForSale[] public itemsForSale;
-  mapping(uint256 => bool) public activeItems; // tokenId => ativo?
+  mapping(uint256 => bool) public activeItems; // tokenId => active?
+
 
   event itemAddedForSale(uint256 id, uint256 tokenId, uint256 price);
   event itemSold(uint256 id, address buyer, uint256 price);
@@ -41,10 +41,10 @@ contract ArtMarketplace {
     _;
   }
 
-  modifier HasEditApproval(uint256 tokenId){
-    require(token.getApproved(tokenId) == address(this), "Market is not approved");
-    _;
-  }
+//  modifier HasEditApproval(uint256 tokenId){
+//    require(token.getApproved(tokenId) == address(this), "Market is not approved");
+//    _;
+//  }
 
   modifier ItemExists(uint256 id){
     require(id < itemsForSale.length && itemsForSale[id].id == id, "Could not find item");
@@ -58,7 +58,7 @@ contract ArtMarketplace {
 
   function putItemForSale(uint256 tokenId, uint256 price) 
     OnlyItemOwner(tokenId) 
-    HasTransferApproval(tokenId) 
+    HasTransferApproval(tokenId)
     external 
     returns (uint256){
       require(!activeItems[tokenId], "Item is already up for sale");
@@ -75,6 +75,7 @@ contract ArtMarketplace {
 
       assert(itemsForSale[newItemId].id == newItemId);
       emit itemAddedForSale(newItemId, tokenId, price);
+
       return newItemId;
   }
 
@@ -92,9 +93,19 @@ contract ArtMarketplace {
       token.safeTransferFrom(itemsForSale[id].seller, msg.sender, itemsForSale[id].tokenId);
       itemsForSale[id].seller.transfer(msg.value);
 
-
       emit itemSold(id, msg.sender, itemsForSale[id].price);
+
     }
+//    function transferNFT(uint256 tokenId, address receiver)
+//      ItemExists(id)
+//      external{
+//        token.safeTransferFrom(msg.sender, msg.sender, itemsForSale[id].tokenId);
+//    }
+//    function receiveNFT(uint256 tokenId)
+//      ItemExists(id)
+//      external{
+//
+//    }
 
 
 //  function edit(uint256 tokenId)
@@ -102,10 +113,10 @@ contract ArtMarketplace {
 //    HasEditApproval(tokenId)
 //    external
 //    returns (uint256){
-//      edit.push(edit({
-//      title: title,
-//      description: description,
-//      price: price
+//      edit.push(ItemForEdit({
+//        title: title,
+//        description: description,
+//        price: price
 //      }));
 //
 //      emit itemEdit(id,tokenId,price);

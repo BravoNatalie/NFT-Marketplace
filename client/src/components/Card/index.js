@@ -14,12 +14,11 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import { useStyles } from "./styles.js";
 import { ReactComponent as EthereumLogo } from "../../assets/ethereum_logo.svg";
 
-const Card = ({ tokenId, name, image, price, owner,isSold, isForSale }) => {
-  let flag_selling = true;
+const Card = ({ tokenId, name, image, price, owner,isForSale }) => {
+
   const classes = useStyles();
   // console.log("Card---------image: ", image);
 
-  if(isSold==false) flag_selling=false;
 
   return (
     <Link to={`/nft/${tokenId}`}>
@@ -43,7 +42,7 @@ const Card = ({ tokenId, name, image, price, owner,isSold, isForSale }) => {
               </Typography>
               <Chip
                 size="small"
-                disabled={flag_selling}
+                disabled={!isForSale}
                 label="Selling"
                 className={classes.badge}
               />

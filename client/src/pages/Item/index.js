@@ -19,10 +19,10 @@ import { selectedNft, removeSelectedNft } from "../../redux/actions/nftActions";
 import { useStyles } from "./styles.js";
 
 // import { DateRangePicker, DateRange, DateRangeDelimiter } from "@material-ui/pickers";
-import DatePicker,{registerLocale, setDefaultLocale} from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import zhCN from 'date-fns/locale/zh-CN';
-registerLocale('zh-CN', zhCN)
+// import DatePicker,{registerLocale, setDefaultLocale} from "react-datepicker";
+// import "react-datepicker/dist/react-datepicker.css";
+// import zhCN from 'date-fns/locale/zh-CN';
+// registerLocale('zh-CN', zhCN)
 
 
 
@@ -32,6 +32,9 @@ const Item = () => {
   const { nftId } = useParams();
   const marketplaceContract = useSelector(
       (state) => state.allNft.marketplaceContract
+  );
+  const artTokenContract = useSelector(
+      (state) => state.allNft.artTokenContract
   );
   const account = useSelector((state) => state.allNft.account);
   let nft = useSelector((state) => state.nft);
@@ -67,6 +70,7 @@ const Item = () => {
 
 
   useEffect(() => {
+
     if (nftId && nftId !== "" && nftItem) dispatch(selectedNft(nftItem[0]));
     return () => {
       dispatch(removeSelectedNft());
@@ -76,14 +80,33 @@ const Item = () => {
   async function putForSale(id, price) {
     try {
       // const itemIdex = getItemIndexBuyTokenId(id);
-
+      //
       // const marketAddress = ArtMarketplace.networks[1337].address;
       // await artTokenContract.methods.approve(marketAddress, items[itemIdex].tokenId).send({from: accounts[0]});
+
+      if(isSold){
+        try {
+          // const web3 = await getWeb3();
+          // const artTokenContract = new web3.eth.Contract(
+          //     ArtToken.abi
+          //     // ArtToken.networks[networkId].address
+          // );
+          const receipt2 = await artTokenContract.methods
+              .approve(marketplaceContract._address,id)
+              .send({gas:210000,from: account });
+          console.log(receipt2);
+        }catch (error) {
+          console.error("Error while giveResaleApproval",error);
+        }
+
+      }
 
       const receipt = await marketplaceContract.methods
           .putItemForSale(id, price)
           .send({ gas: 210000, from: account });
+
       console.log(receipt);
+
     } catch (error) {
       console.error("Error, puting for sale: ", error);
       alert("Error while puting for sale!");
@@ -102,6 +125,18 @@ const Item = () => {
       alert("Error while buying!");
     }
   };
+  async function transferNFT(id, receiver) {
+    try {
+      const receipt = await marketplaceContract.methods
+          .transferNFT(saleId)
+          .send({ gas: 210000, value: price, from: account });
+
+    } catch (error) {
+      console.error("Error, transfering: ", error);
+      alert("Error while transfering!");
+    }
+  };
+
 
   return (
       <div className={classes.pageItem}>
@@ -161,17 +196,18 @@ const Item = () => {
                           defaultValue={description}
                       />
 
-                      <label htmlFor="duration">Duration
-                        <DatePicker
-                            locale="zh-CN"
-                            selected={startDate}
-                            onChange={onChange}
-                            startDate={startDate}
-                            endDate={endDate}
-                            selectsRange
-                            inline
-                        />
-                      </label>
+                      {/*<label htmlFor="duration">Duration*/}
+                      {/*  <DatePicker*/}
+                      {/*      locale="zh-CN"*/}
+                      {/*      selected={startDate}*/}
+                      {/*      onChange={onChange}*/}
+                      {/*      startDate={startDate}*/}
+                      {/*      endDate={endDate}*/}
+                      {/*      selectsRange*/}
+                      {/*      inline*/}
+                      {/*  />*/}
+                      {/*</label>*/}
+
                       {/*<DateRangePicker*/}
                       {/*    startText="Check-in"*/}
                       {/*    endText="Check-out"*/}
@@ -185,6 +221,7 @@ const Item = () => {
                       {/*        </React.Fragment>*/}
                       {/*    )}*/}
                       {/*/>*/}
+
                       <TextField
                           label="price"
                           name="price"
@@ -221,12 +258,13 @@ const Item = () => {
                             </Button>
                         )}
                         {owner == account && !isForSale &&(
-                            <Link to="/edit-nft">
+                            <Link to="/transfer">
                               <Button
                                   variant="outlined"
                                   color="primary"
+                                  onClick={() => transferNFT(saleId, price)}
                               >
-                                Edit
+                                Transfer
                               </Button>
                             </Link>
                         )}

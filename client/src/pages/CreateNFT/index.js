@@ -5,13 +5,16 @@ import CancelOutlinedIcon  from "@material-ui/icons/CancelOutlined";
 import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-
+import Web3 from "web3";
 
 import { useStyles } from "./styles.js";
 
 import DropZone from "../../components/DropZone";
 
 import { api } from "../../services/api";
+
+
+
 
 const CreateNFT = () => {
   const classes = useStyles();
@@ -43,8 +46,8 @@ const CreateNFT = () => {
     const { title, description ,price} = formData;
 
     console.log("title: " + title);
-
     const data = new FormData();
+
     data.append("name", title);
     data.append("description", description);
     data.append("price", price);

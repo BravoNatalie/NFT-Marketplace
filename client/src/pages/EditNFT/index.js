@@ -132,11 +132,11 @@ const EditNFT = () => {
                               alignItems="center"
                               justify="center"
                         >
-                        <Grid item md={7} sm={7} xs={12}>
-                            <figure>
-                                <img className="ui fluid image" src={image} />
-                            </figure>
-                        </Grid>
+                        {/*<Grid item md={7} sm={7} xs={12}>*/}
+                        {/*    <figure>*/}
+                        {/*        <img className="ui fluid image" src={image} />*/}
+                        {/*    </figure>*/}
+                        {/*</Grid>*/}
                         <fieldset>
                             <TextField
                                 label="Title"
