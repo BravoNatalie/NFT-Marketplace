@@ -23,7 +23,7 @@ function App() {
           <Route path="/nft/:nftId" component={Item} />
           <Route path="/edit-nft" component={EditNFT} />
           <Route path="/my-nft" component={MyNFTs} />
-          <Route path="/transfer" component={Transfer} />
+          <Route path="/transfer/:nftId" component={Transfer} />
           <Route>404 Not Found!</Route>
         </Switch>
       </Router>

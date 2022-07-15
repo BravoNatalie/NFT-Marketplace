@@ -9,21 +9,9 @@ import Grid from "@material-ui/core/Grid";
 import Web3 from "web3";
 
 
-// import { DateRangePicker, DateRange } from '@mui/x-date-pickers-pro/DateRangePicker';
-// import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-// import Box from '@mui/material/Box';
-
 import { selectedNft, removeSelectedNft } from "../../redux/actions/nftActions";
 
 import { useStyles } from "./styles.js";
-
-// import { DateRangePicker, DateRange, DateRangeDelimiter } from "@material-ui/pickers";
-// import DatePicker,{registerLocale, setDefaultLocale} from "react-datepicker";
-// import "react-datepicker/dist/react-datepicker.css";
-// import zhCN from 'date-fns/locale/zh-CN';
-// registerLocale('zh-CN', zhCN)
-
 
 
 const Item = () => {
@@ -48,26 +36,14 @@ const Item = () => {
     owner,
     creator,
     description,
-    duration,
     tokenId,
     saleId,
     isForSale,
     isSold,
+    isTransfer,
   } = nft;
 
-  // const [value, setValue] = React.useState([null, null]);
   const dispatch = useDispatch();
-
-  // const [value, setValue] = React.useState<DateRange<Date>>([null, null]);
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(null);
-  const onChange = (dates) => {
-    const [start, end] = dates;
-    setStartDate(start);
-    setEndDate(end);
-  };
-
-
 
   useEffect(() => {
 
@@ -79,18 +55,10 @@ const Item = () => {
 
   async function putForSale(id, price) {
     try {
-      // const itemIdex = getItemIndexBuyTokenId(id);
-      //
-      // const marketAddress = ArtMarketplace.networks[1337].address;
-      // await artTokenContract.methods.approve(marketAddress, items[itemIdex].tokenId).send({from: accounts[0]});
 
-      if(isSold){
+      if(isSold||!isTransfer){
         try {
-          // const web3 = await getWeb3();
-          // const artTokenContract = new web3.eth.Contract(
-          //     ArtToken.abi
-          //     // ArtToken.networks[networkId].address
-          // );
+
           const receipt2 = await artTokenContract.methods
               .approve(marketplaceContract._address,id)
               .send({gas:210000,from: account });
@@ -125,18 +93,6 @@ const Item = () => {
       alert("Error while buying!");
     }
   };
-  async function transferNFT(id, receiver) {
-    try {
-      const receipt = await marketplaceContract.methods
-          .transferNFT(saleId)
-          .send({ gas: 210000, value: price, from: account });
-
-    } catch (error) {
-      console.error("Error, transfering: ", error);
-      alert("Error while transfering!");
-    }
-  };
-
 
   return (
       <div className={classes.pageItem}>
@@ -164,7 +120,7 @@ const Item = () => {
                     <fieldset>
                       <h1>{name}</h1>
                       <TextField
-                          label="creator"
+                          label="创建者"
                           name="creator"
                           variant="filled"
                           margin="dense"
@@ -175,7 +131,7 @@ const Item = () => {
                           }
                       />
                       <TextField
-                          label="owner"
+                          label="所有者"
                           name="owner"
                           variant="filled"
                           disabled
@@ -187,7 +143,7 @@ const Item = () => {
                           id="outlined-multiline-static"
                           multiline
                           rows={4}
-                          label="Description"
+                          label="描述"
                           name="description"
                           variant="filled"
                           margin="dense"
@@ -196,42 +152,17 @@ const Item = () => {
                           defaultValue={description}
                       />
 
-                      {/*<label htmlFor="duration">Duration*/}
-                      {/*  <DatePicker*/}
-                      {/*      locale="zh-CN"*/}
-                      {/*      selected={startDate}*/}
-                      {/*      onChange={onChange}*/}
-                      {/*      startDate={startDate}*/}
-                      {/*      endDate={endDate}*/}
-                      {/*      selectsRange*/}
-                      {/*      inline*/}
-                      {/*  />*/}
-                      {/*</label>*/}
-
-                      {/*<DateRangePicker*/}
-                      {/*    startText="Check-in"*/}
-                      {/*    endText="Check-out"*/}
-                      {/*    value={value}*/}
-                      {/*    onChange={(newValue) => setValue(newValue)}*/}
-                      {/*    renderInput={(startProps, endProps) => (*/}
-                      {/*        <React.Fragment>*/}
-                      {/*          <TextField {...startProps} />*/}
-                      {/*          <DateRangeDelimiter> to </DateRangeDelimiter>*/}
-                      {/*          <TextField {...endProps} />*/}
-                      {/*        </React.Fragment>*/}
-                      {/*    )}*/}
-                      {/*/>*/}
 
                       <TextField
-                          label="price"
+                          label="价格"
                           name="price"
                           variant="filled"
                           margin="dense"
-                          defaultValue={Web3.utils.fromWei(String(price), "ether")}
-                          // defaultValue={String(price)}
+                          // defaultValue={Web3.utils.fromWei(String(price), "ether")}
+                          defaultValue={String(price)}
                           InputProps={{
                             startAdornment: (
-                                <InputAdornment position="start">ETH</InputAdornment>
+                                <InputAdornment position="start">￥</InputAdornment>
                             ),
                           }}
                           fullWidth
@@ -244,7 +175,7 @@ const Item = () => {
                                 color="primary"
                                 onClick={() => putForSale(tokenId, price)}
                             >
-                              Sell
+                              售卖
                             </Button>
                         )}
 
@@ -254,17 +185,16 @@ const Item = () => {
                                 color="primary"
                                 onClick={() => buy(saleId, price)}
                             >
-                              Buy
+                              购买
                             </Button>
                         )}
                         {owner == account && !isForSale &&(
-                            <Link to="/transfer">
+                            <Link to={`/transfer/${tokenId}`}>
                               <Button
                                   variant="outlined"
                                   color="primary"
-                                  onClick={() => transferNFT(saleId, price)}
                               >
-                                Transfer
+                                转让
                               </Button>
                             </Link>
                         )}

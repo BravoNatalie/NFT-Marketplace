@@ -25,7 +25,7 @@ contract ArtMarketplace {
 
   event itemAddedForSale(uint256 id, uint256 tokenId, uint256 price);
   event itemSold(uint256 id, address buyer, uint256 price);
-  event itemEdit(uint256 id,uint256 tokenId,uint256 price);
+  event itemTransfer(uint256 id, address receiver);
 
   constructor(ArtToken _token) {
       token = _token;
@@ -96,32 +96,6 @@ contract ArtMarketplace {
       emit itemSold(id, msg.sender, itemsForSale[id].price);
 
     }
-//    function transferNFT(uint256 tokenId, address receiver)
-//      ItemExists(id)
-//      external{
-//        token.safeTransferFrom(msg.sender, msg.sender, itemsForSale[id].tokenId);
-//    }
-//    function receiveNFT(uint256 tokenId)
-//      ItemExists(id)
-//      external{
-//
-//    }
-
-
-//  function edit(uint256 tokenId)
-//    OnlyItemOwner(tokenId)
-//    HasEditApproval(tokenId)
-//    external
-//    returns (uint256){
-//      edit.push(ItemForEdit({
-//        title: title,
-//        description: description,
-//        price: price
-//      }));
-//
-//      emit itemEdit(id,tokenId,price);
-//    }
-
 
   function totalItemsForSale() external view returns(uint256) {
     return itemsForSale.length;

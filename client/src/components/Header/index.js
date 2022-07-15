@@ -82,14 +82,12 @@ const Header = () => {
                                     <ClickAwayListener onClickAway={handleClose}>
                                         <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                                             <Link to="/create-nft">
-                                            <MenuItem onClick={handleClose}> Mint your art</MenuItem>
+                                            <MenuItem onClick={handleClose}>创建NFT</MenuItem>
                                             </Link>
                                             <Link to="/my-nft">
-                                                <MenuItem onClick={handleClose}> My NFTs</MenuItem>
+                                                <MenuItem onClick={handleClose}>我的NFT</MenuItem>
                                             </Link>
-                                            <Link to="/transfer">
-                                                <MenuItem onClick={handleClose}> Transfer </MenuItem>
-                                            </Link>
+
 
                                         </MenuList>
                                     </ClickAwayListener>

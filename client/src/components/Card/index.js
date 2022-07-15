@@ -12,7 +12,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardActionArea from "@material-ui/core/CardActionArea";
 
 import { useStyles } from "./styles.js";
-import { ReactComponent as EthereumLogo } from "../../assets/ethereum_logo.svg";
+import { ReactComponent as RMBLogo } from "../../assets/rmb.svg";
 
 const Card = ({ tokenId, name, image, price, owner,isForSale }) => {
 
@@ -49,13 +49,12 @@ const Card = ({ tokenId, name, image, price, owner,isForSale }) => {
             </div>
             <Typography variant="h6" className={classes.price}>
               <SvgIcon
-                component={EthereumLogo}
-                viewBox="0 0 400 426.6"
-                titleAccess="ETH"
+                component={RMBLogo}
+                viewBox="0 0 1024 1024"
+                titleAccess="RMB"
               />
-              {/*<span>{String(price)}</span>*/}
-              <span>{Web3.utils.fromWei(String(price), "ether")}</span>
-              {/*<span>{Web3.utils.fromWei(String(price), "ether")}.120000</span>*/}
+              <span>{String(price)}</span>
+              {/*<span>{Web3.utils.fromWei(String(price), "ether")}</span>*/}
             </Typography>
             <Divider className={classes.divider} light />
             <Typography

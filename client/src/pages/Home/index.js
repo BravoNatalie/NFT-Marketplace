@@ -91,6 +91,7 @@ const Home = () => {
               saleId: null,
               price:response.data.price,
               isSold: null,
+              isTransfer:false,
             });
           }
 
@@ -165,10 +166,10 @@ const Home = () => {
           </Grid>
           <Grid item xs={6} className={classes.main}>
             <img src={galerie} alt="galerie" />
-            <Typography>A decentralized NFT marketplace where you can expose your art.</Typography>
+            <Typography>探索艺术品的去中心化NFT市场</Typography>
             <Link to="/create-nft">
               <Button variant="contained" color="primary" disableElevation>
-                Mint your art
+                创建NFT
               </Button>
             </Link>
           </Grid>
@@ -191,7 +192,7 @@ const Home = () => {
         </Grid>
       </section>
       <section className={classes.allNfts}>
-        <Typography className={classes.title}>All artwork</Typography>
+        <Typography className={classes.title}>所有NFT作品</Typography>
         <Grid
           container
           direction="row"
