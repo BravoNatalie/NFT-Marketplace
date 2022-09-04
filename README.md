@@ -88,7 +88,7 @@ To run the application you'll need:
 * [Truffle](https://www.trufflesuite.com/)
 * [Ganache](https://www.trufflesuite.com/ganache)
 * Clone the repository:
-  * ```$ git clone https://github.com/BravoNatalie/NFT-Marketplace.git ```
+  * ```$ git clone git@github.com:Jimmy-chy/NFT-Marketplace.git ```
 
 
 Now go to project folder and run:
