@@ -38,7 +38,7 @@ const DropZone = ({ onFileUploaded })  => {
         : (
           <p>
             <CloudUploadIcon />
-            NFT image
+            NFT图片
           </p>
         )
       }

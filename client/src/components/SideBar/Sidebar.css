@@ -1,0 +1,253 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+ul{
+    padding: 0;
+    margin: 0;
+}
+li{
+    list-style: none;
+}
+body{
+    background-color: #eee;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+    display: none;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 10px;
+    display: none;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #1b5cbd;
+    display: block;
+}
+
+
+.side-menu{
+
+    position: absolute;
+    background: #ffffff;
+    width: 300px;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 30px 20px;
+    transition: width .2s ease-in;
+}
+
+.side-menu.inactive{
+    width: 90px;
+}
+
+.side-menu .top-section{
+    position: relative;
+}
+
+.side-menu .top-section .logo{
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    display: inline-block;
+}
+.side-menu .top-section .logo img{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.side-menu .top-section .toggle-menu-btn{
+    color: #706c6c;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.side-menu.inactive .top-section .toggle-menu-btn{
+    right: -50px;
+}
+
+
+.side-menu .search-controller .search-btn{
+    width: 40px;
+    height: 35px;
+    position: absolute;
+    background: transparent;
+    border: 0;
+    font-size: 20px;
+    color: #666;
+}
+
+
+.side-menu .main-menu .menu-item{
+    color: #333;
+    text-decoration: none;
+    font-size: 15px;
+    display: block;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.side-menu .main-menu .menu-item.active{
+    background: #333;
+    border-radius: 5px;
+    color: #fff;
+}
+
+
+.side-menu .main-menu{
+    margin: 5px 0;
+    position: relative;
+    max-height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+/* not required any more */
+.side-menu.inactive .main-menu{
+
+}
+
+.side-menu .main-menu .menu-item .menu-icon{
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    line-height: 40px;
+    text-align: center;
+}
+
+.side-menu .main-menu .menu-item span{
+    position: absolute;
+    display: inline-block;
+    line-height: 40px;
+    opacity: 1;
+    transition: opacity .2s ease-in;
+}
+
+.side-menu.inactive .main-menu .menu-item span{
+    opacity: 0;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+.side-menu .main-menu .sub-menu{
+    color: #333;
+    margin-left: 20px;
+    border-left: 1px solid #666;
+    box-sizing: border-box;
+    padding-left: 30px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .2s ease-in;
+}
+
+
+
+.side-menu .main-menu .sub-menu.active{
+    max-height: 200px;
+}
+
+.side-menu .main-menu .sub-menu a{
+    display: block;
+    margin: 5px 0;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #333;
+    box-sizing: border-box;
+    padding: 5px;
+}
+
+
+.side-menu .main-menu .sub-menu a.active{
+    /* change in background, not recorded in video */
+    background: #1a1919;
+    display: block;
+
+    border-radius: 5px;
+    color: #fff;
+
+}
+
+.side-menu-footer{
+    width: 100%;
+    background: #333;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.side-menu-footer .avatar{
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    border-radius: 50%;
+    display: inline-block;
+}
+.side-menu-footer .avatar img{
+    max-width: 100%;
+}
+
+.side-menu-footer .user-info{
+    display: inline-block;
+    margin: 0 10px;
+    color: #fff;
+    position: absolute;
+    opacity: 1;
+    transition: opacity .2s ease-in;
+}
+
+.side-menu.inactive .side-menu-footer .user-info{
+    opacity: 1;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+
+.side-menu-footer .user-info h5{
+    font-size: 15px;
+}
+
+
+.side-menu-footer .user-info p{
+    font-size: 14px;
+}
+
+.divider{
+    width: 100%;
+    height: 1px;
+    border-radius: 1px;
+    background: #333;
+}
+
+.container{
+    margin-left: 300px;
+    transition: margin-left .2s ease-in;
+    padding: 50px;
+    box-sizing: border-box;
+}
+
+.container.inactive{
+    margin-left: 80px;
+}

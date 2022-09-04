@@ -2,14 +2,19 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Header from "./components/Header/index";
-import Home from "./pages/Home/index";
+import Footer from "./components/Footer/index";
+import Home from "./pages/Home";
 import CreateNFT from "./pages/CreateNFT/index";
 import Item from "./pages/Item/index";
-import EditNFT from "./pages/EditNFT/index";
 import Transfer from "./pages/Transfer/index";
 import MyNFTs from "./pages/My NFTs";
-
+import Login from "./pages/Login/index";
+import SignUp from "./pages/Login/signup";
+import Tab from "./pages/Tab/Tab";
+import UserSetting from "./pages/UserSetting/index";
+import Welcome from "./pages/Welcome/index";
 import "./App.css";
+
 
 
 function App() {
@@ -19,13 +24,18 @@ function App() {
         <Header />
         <Switch>
           <Route path="/" exact component={Home} />
+          <Route path="/Welcome" component={Welcome}/>
           <Route path="/create-nft" component={CreateNFT} />
           <Route path="/nft/:nftId" component={Item} />
-          <Route path="/edit-nft" component={EditNFT} />
           <Route path="/my-nft" component={MyNFTs} />
           <Route path="/transfer/:nftId" component={Transfer} />
+          <Route path="/Login" component={Login} />
+          <Route path="/SignUp" component={SignUp} />
+          <Route path="/Tab" component={Tab}/>
+          <Route path="/UserSetting" component={UserSetting}/>
           <Route>404 Not Found!</Route>
         </Switch>
+        <Footer />
       </Router>
     </div>
   );

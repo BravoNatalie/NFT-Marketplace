@@ -41,6 +41,8 @@ const Item = () => {
     isForSale,
     isSold,
     isTransfer,
+    author,
+    college,
   } = nft;
 
   const dispatch = useDispatch();

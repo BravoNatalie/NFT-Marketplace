@@ -74,7 +74,7 @@ const Transfer =()=> {
         <div className={classes.pageTransferNFTs} >
             <form onSubmit={transferItem}>
                 <div className={classes.formHeader}>
-                    <h1>Transfer NFT</h1>
+                    <h1>转让NFT</h1>
                     <Link to="/">
                         <CancelOutlinedIcon fontSize="large" />
                     </Link>
@@ -97,7 +97,7 @@ const Transfer =()=> {
                         />
 
                         <Button variant="contained" color="primary" type="submit">
-                            Transfer NFT
+                            转让NFT
                         </Button>
                     </fieldset>
                 </div>

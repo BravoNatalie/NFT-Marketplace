@@ -1,20 +1,23 @@
-import { makeStyles } from '@material-ui/core/styles';
+import {alpha, makeStyles} from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   homepage: {
 
   },
+
   images: {
     objectFit: "cover",
     width: "100%",
-    height: "100%",
-    
+    height: "300px",
+    marginLeft: "auto",
+    marginRight: "auto"
   },
 
   banner: {
     // minHeight: "50vh",
     // maxHeight: "50vh",
     // marginBottom: "3rem"
+
   },
   gridBanner: {
     // margin: 0,
@@ -28,7 +31,8 @@ const useStyles = makeStyles({
     justifyContent: "center",
     padding: "0 1rem",
     '& img': {
-      width: "55%"
+      width: "55%",
+
     },
     '& p': {
       margin: "3rem 8rem 4rem 8.5rem",
@@ -52,7 +56,20 @@ const useStyles = makeStyles({
     fontSize: "1.8rem",
     fontWeight: "600",
     marginBottom: "1rem",
+  },
+
+  search :{
+    width: 280,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+
+ },
+  searchinner : {
+
+    display: 'flex',
   }
+
 });
 
 export { useStyles };
