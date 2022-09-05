@@ -278,7 +278,7 @@ const Header = (props) => {
                     <Button href="#" size="large" className={classes.button1}>
                         NFT要闻
                     </Button>
-                        <Link to="/my-nft">
+                        <Link to="/product">
                             <Button href="#" size="large" className={classes.button2}>
                                 NFT产品
                             </Button>
@@ -300,13 +300,13 @@ const Header = (props) => {
                         </IconButton>
                     </Link>
                 </div>
-                    {/*<div className={classes.account}>*/}
-                    {/*    <AccountBalanceWalletIcon*/}
-                    {/*        fontSize="large"*/}
-                    {/*        color="action"*/}
-                    {/*        titleAccess="Wallet Address" className={classes.walletIcon}/>*/}
-                    {/*    <Typography variant="h6" color="textPrimary">{account.slice(0,7)}...{account.slice(-4)}</Typography>*/}
-                    {/*</div>*/}
+                    <div className={classes.account}>
+                        <AccountBalanceWalletIcon
+                            fontSize="large"
+                            color="action"
+                            titleAccess="Wallet Address" className={classes.walletIcon}/>
+                        <Typography variant="h6" color="textPrimary">{account.slice(0,7)}...{account.slice(-4)}</Typography>
+                    </div>
             </Toolbar>
         </AppBar>
             {/*    </Toolbar>*/}
