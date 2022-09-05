@@ -121,37 +121,47 @@ const Header = (props) => {
                         <img src={logo} alt="shsxy" className={classes.logo}/>
                     </Link>
                     <div className={classes.root}>
-                    <Button href="#" size="large" className={classes.button1}>
-                        NFT要闻
-                    </Button>
+                        <Link to="/create-nft">
+                            <Button href="#" size="large" className={classes.button0}>
+                                创作NFT
+                            </Button>
+                        </Link>
+                        <Link to="/">
+                            <Button href="#" size="large" className={classes.button1}>
+                                NFT要闻
+                            </Button>
+                        </Link>
                         <Link to="/product">
                             <Button href="#" size="large" className={classes.button2}>
                                 NFT产品
                             </Button>
                         </Link>
-                    <Button href="#" size="large" className={classes.button3}>
-                        积分兑换
-                    </Button>
-                </div>
-                <div className={classes.account2}>
-                    <Link to="/UserSetting">
-                        <IconButton
-                            edge="end"
-                            aria-label="account of current user"
-                            aria-controls={classes.account}
-                            aria-haspopup="true"
-                            onClick={handleProfileMenuOpen}
-                        >
-                            <AccountCircle fontSize="large"/>
-                        </IconButton>
-                    </Link>
-                </div>
+                        <Link to="/">
+                            <Button href="#" size="large" className={classes.button3}>
+                                积分兑换
+                            </Button>
+                        </Link>
+                    </div>
+                    <div className={classes.account2}>
+                        <Link to="/UserSetting">
+                            <IconButton
+                                edge="end"
+                                aria-label="account of current user"
+                                aria-controls={classes.account}
+                                aria-haspopup="true"
+                                onClick={handleProfileMenuOpen}
+                            >
+                                <AccountCircle fontSize="large"/>
+                            </IconButton>
+                        </Link>
+                    </div>
                     <div className={classes.account}>
                         <AccountBalanceWalletIcon
                             fontSize="large"
                             color="action"
                             titleAccess="Wallet Address" className={classes.walletIcon}/>
-                        <Typography variant="h6" color="textPrimary">{account.slice(0,7)}...{account.slice(-4)}</Typography>
+                        <Typography variant="h6"
+                                    color="textPrimary">{account.slice(0, 7)}...{account.slice(-4)}</Typography>
                     </div>
             </Toolbar>
         </AppBar>

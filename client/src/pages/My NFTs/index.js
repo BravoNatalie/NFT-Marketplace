@@ -37,7 +37,7 @@ const MyNFTs =()=> {
     return (
         <box className={classes.homepage}>
             <section className={classes.MyNfts}>
-                <Typography className={classes.title}>My NFTs</Typography>
+                <Typography className={classes.title}>个人藏品</Typography>
                 <Grid
                     container
                     direction="row"

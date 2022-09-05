@@ -22,6 +22,7 @@ export const menuItems = [
       { name: "上传记录", to: "/User/UploadRecord" },
     ],
   },
+  { name: "个人藏品", to: `/NFTCollections`, iconClassName: "bi bi-collection" },
   { name: "审核中心", to: `/AuditCenter`, iconClassName: "bi bi-house" },
   {
     name: "个人钱包",

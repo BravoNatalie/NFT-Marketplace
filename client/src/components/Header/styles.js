@@ -25,6 +25,9 @@ const useStyles = makeStyles((theme) =>({
   paper: {
     marginRight: theme.spacing(2),
   },
+  button0:{
+    marginRight:"5rem",
+  },
   button1:{
     marginRight:"5rem",
   },

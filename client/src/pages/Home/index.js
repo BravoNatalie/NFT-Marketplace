@@ -183,34 +183,34 @@ const Home = () => {
     });
   }
   const SearchNfts =filterByName(nft,name);
-  console.log(SearchNfts);
+  console.log("SearchNfts："+SearchNfts);
   function onChange(event) {
     let value = event.target.value;
     let newData = {};
     newData.receive = value;
     setKeyword(newData);
   }
-  // function SampleNextArrow(props) {
-  //     const { className, style, onClick } = props;
-  //     return (
-  //         <div
-  //             className={className}
-  //             style={{ ...style, display: "block", background: "grey",fontSize:"15px"}}
-  //             onClick={onClick}
-  //         />
-  //     );
-  // }
-  //
-  // function SamplePrevArrow(props) {
-  //     const { className, style, onClick } = props;
-  //     return (
-  //         <div
-  //             className={className}
-  //             style={{ ...style, display: "block", background: "grey" ,fontSize:"15px"}}
-  //             onClick={onClick}
-  //         />
-  //     );
-  // }
+  function SampleNextArrow(props) {
+      const { className, style, onClick } = props;
+      return (
+          <div
+              className={className}
+              style={{ ...style, display: "block", background: "grey",fontSize:"15px"}}
+              onClick={onClick}
+          />
+      );
+  }
+
+  function SamplePrevArrow(props) {
+      const { className, style, onClick } = props;
+      return (
+          <div
+              className={className}
+              style={{ ...style, display: "block",  background: "grey" , fontSize:"15px"}}
+              onClick={onClick}
+          />
+      );
+  }
   const nftItem = useSelector((state) => state.allNft.nft);
   const settings = {
     dots: true,
@@ -221,8 +221,8 @@ const Home = () => {
     initialSlide: 0,
     autoplay: true,
     autoplaySpeed: 5000,
-    // nextArrow: <SampleNextArrow />,
-    // prevArrow: <SamplePrevArrow />,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
 
     responsive: [
       {
