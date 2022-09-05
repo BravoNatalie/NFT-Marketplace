@@ -183,7 +183,7 @@ const Home = () => {
     });
   }
   const SearchNfts =filterByName(nft,name);
-  console.log(SearchNfts);
+  console.log("SearchNfts："+SearchNfts);
   function onChange(event) {
     let value = event.target.value;
     let newData = {};
