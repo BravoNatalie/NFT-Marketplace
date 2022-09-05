@@ -1,6 +1,7 @@
 import "./Sidebar.css";
 import SideMenu, { menuItems } from "./SideMenu";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import UserInfo from "../UserInfo/index";
 import Wallet from "../Wallet/index";
@@ -8,8 +9,9 @@ import TransactionRecord from "../TransactionRecord/index";
 import UploadRecord from "../UploadRecord/index";
 import AuditCenter from "../AuditCenter/index"
 import Integral from "../Integral/index";
-import MyCollections from "../MyCollections/index"
-function Sidebar() {
+import NFTItem from "../../pages/Item";
+import NFTCollections from "../../pages/My NFTs/index"
+function Sidebar(tokenId) {
 
     const [inactive, setInactive] = useState(false);
 
@@ -34,8 +36,11 @@ function Sidebar() {
                         <Route exact path={"/User/UploadRecord"}>
                             <UploadRecord/>
                         </Route>
-                        <Route exact path={"/MyCollections"}>
-                            <MyCollections/>
+                        <Route exact path={"/NFTCollections"}>
+                            <NFTCollections/>
+                        </Route>
+                        <Route exact path={`/nft/${tokenId}`}>
+                            <NFTItem/>
                         </Route>
                         <Route exact path={"/AuditCenter"}>
                             <AuditCenter/>
