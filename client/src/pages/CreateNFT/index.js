@@ -145,7 +145,7 @@ const CreateNFT = () => {
     <div className={classes.pageCreateNft}>
       <form onSubmit={createNFT}>
         <div className={classes.formHeader}>
-          <h1>Create collectible</h1>
+          <h1>创作NFT</h1>
           <Link to="/">
             <CancelOutlinedIcon fontSize="large" />
           </Link>

@@ -8,7 +8,7 @@ import TransactionRecord from "../TransactionRecord/index";
 import UploadRecord from "../UploadRecord/index";
 import AuditCenter from "../AuditCenter/index"
 import Integral from "../Integral/index";
-
+import MyCollections from "../MyCollections/index"
 function Sidebar() {
 
     const [inactive, setInactive] = useState(false);
@@ -33,6 +33,9 @@ function Sidebar() {
                         </Route>
                         <Route exact path={"/User/UploadRecord"}>
                             <UploadRecord/>
+                        </Route>
+                        <Route exact path={"/MyCollections"}>
+                            <MyCollections/>
                         </Route>
                         <Route exact path={"/AuditCenter"}>
                             <AuditCenter/>
