@@ -178,6 +178,11 @@ const Product=()=>{
 
             <img src={NFTbg} alt="NFTbg" className={classes.nftbg}/>
                 <div className={classes.nftheader}>
+                    <Link to="/create-nft">
+                        <Button variant="contained"  size="large" disableElevation>
+                            创建你的NFT作品
+                        </Button>
+                    </Link>
                     <form onSubmit={onSubmit} className={classes.form}>
                         <TextField
                             id="standard-bare"

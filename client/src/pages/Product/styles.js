@@ -18,8 +18,9 @@ const useStyles = makeStyles({
     nftheader:{
        position:"absolute",
         bottom: "20%",
-
-
+        display:"flex",
+        justifyContent:"center",
+        alignItems:"center",
 
 
     },

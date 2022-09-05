@@ -5,6 +5,7 @@ const useStyles = makeStyles((theme) =>({
         width: "12rem"
     },
     footer: {
+        width:"100%",
       display:"flex",
       justifyContent: "space-between",
       alignItems:"center",
@@ -22,13 +23,18 @@ const useStyles = makeStyles((theme) =>({
         color:"LightGray",
         marginRight:"1em",
     },
-    sep: {
-        flexGrow: "1",
-        border: "none",
-        height: "1px",
-        backgroundColor: "black",
-        width: "100%",
-    }
+    // sep: {
+    //     flexGrow: "1",
+    //     border: "none",
+    //     height: "1px",
+    //     backgroundColor: "black",
+    //     width: "100%",
+    // }
+    appBar: {
+        top: 'auto',
+        bottom: 0,
+        background: "white",
+    },
 }));
 
 export { useStyles };

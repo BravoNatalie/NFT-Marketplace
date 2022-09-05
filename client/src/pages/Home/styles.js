@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) =>({
   allNfts: {
     //backgroundImage: `url(${backImg})`,
     marginTop: "2rem",
-    padding: "0 2rem",
+    padding: "6rem 2rem",
   },
   nftheader:{
     display:"flex",

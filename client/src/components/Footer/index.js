@@ -34,8 +34,10 @@ const Footer = () => {
     const classes = useStyles();
 
     return (
-        <section >
-            <hr className={classes.sep}/>
+        <React.Fragment>
+        <AppBar className={classes.appBar}>
+            <Toolbar>
+            {/*<hr className={classes.sep}/>*/}
                 <section className={classes.footer}>
                     <div className={classes.footlogo}>
                         <Link to="/">
@@ -49,8 +51,11 @@ const Footer = () => {
                                 隐私政策
                     </div>
                 </section>
-            <hr />
-        </section>
+            {/*<hr />*/}
+            </Toolbar>
+        </AppBar>
+
+        </React.Fragment>
     )
 };
 

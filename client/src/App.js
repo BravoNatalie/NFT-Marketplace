@@ -23,7 +23,8 @@ function App() {
     <div className="App">
       <Router>
         <Header />
-        <Switch>
+        <div className="body">
+        <Switch >
           <Route path="/" exact component={Home} />
           <Route path="/Welcome" component={Welcome}/>
           <Route path="/create-nft" component={CreateNFT} />
@@ -37,7 +38,8 @@ function App() {
           <Route path="/product" component={Product} />
           <Route>404 Not Found!</Route>
         </Switch>
-        <Footer />
+        </div>
+        <Footer/>
       </Router>
     </div>
   );
