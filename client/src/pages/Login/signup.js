@@ -9,6 +9,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { Link } from "react-router-dom";
 import ParticlesBg from "particles-bg";
+
 const Signup = () => {
   const paperStyle = { padding: '30px 20px', width: 500, margin: "20px auto" }
   const headerStyle = { margin: 0 }

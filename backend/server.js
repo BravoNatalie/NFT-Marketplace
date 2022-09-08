@@ -3,6 +3,8 @@ var cors = require('cors');
 
 const app = express();
 
+const pool =require('./db');
+
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
