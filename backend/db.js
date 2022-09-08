@@ -8,7 +8,6 @@ const config = {
     database: 'nft',
     multipleStatements: true
 }
-
 var pool = mysql.createPool(config);
 
 //for init
