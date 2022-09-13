@@ -1,5 +1,6 @@
-import React from 'react'
-import {Grid, Paper, Avatar, TextField, Button, Typography, Link} from '@material-ui/core'
+import React from 'react';
+import {useSelector} from "react-redux";
+import {Grid, Paper, Avatar, TextField, Button, Typography, Link} from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -9,7 +10,8 @@ import SignUp from "./signup";
 import ParticlesBg from "particles-bg";
 
 const Login = () => {
-
+    const accountAddress = useSelector((state) => state.allNft.account);
+    console.log(accountAddress);
     const paperStyle = {padding: 20, height: '70vh', width: 500, margin: "20px auto"}
     const avatarStyle = {backgroundColor: '#1b5cbd'}
     const btnstyle = {margin: '8px 0'}
