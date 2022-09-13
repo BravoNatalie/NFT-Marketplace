@@ -87,8 +87,8 @@ const Home = () => {
                 .catch((err) => {
                   console.log("Err: ", err);
                 });
-            console.log("home----response: ", response);
-            console.log("home----item: ", item);
+            // console.log("home----response: ", response);
+            // console.log("home----item: ", item);
 
             itemsList.push({
               name: response.data.name,
@@ -183,7 +183,7 @@ const Home = () => {
     });
   }
   const SearchNfts =filterByName(nft,name);
-  console.log("SearchNfts："+SearchNfts);
+  // console.log("SearchNfts："+SearchNfts);
   function onChange(event) {
     let value = event.target.value;
     let newData = {};

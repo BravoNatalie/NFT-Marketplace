@@ -121,6 +121,11 @@ const Header = (props) => {
                         <img src={logo} alt="shsxy" className={classes.logo}/>
                     </Link>
                     <div className={classes.root}>
+                        <Link to="/Login">
+                            <Button href="#" size="large" className={classes.button0}>
+                                登录
+                            </Button>
+                        </Link>
                         <Link to="/create-nft">
                             <Button href="#" size="large" className={classes.button0}>
                                 创作NFT

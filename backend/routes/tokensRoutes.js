@@ -14,7 +14,6 @@ const tokensRoutes = (app) => {
   // INDEX
   app.get('/tokens/:tokenID', (req, res) => {
     const { tokenID } = req.params;
-
     res.status(200).json(tokens[tokenID]);
   });
 

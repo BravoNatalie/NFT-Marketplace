@@ -60,6 +60,7 @@ const Signup = () => {
           </Grid>
           <form>
             <TextField fullWidth label='用户名' placeholder="请输入用户名" />
+            <TextField fullWidth label='账户地址' placeholder="请输入账户地址" />
             <TextField fullWidth label='邮箱' placeholder="请输入邮箱" />
             <FormControl component="fieldset" style={marginTop}>
               <FormLabel component="legend">性别</FormLabel>
