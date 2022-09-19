@@ -37,6 +37,16 @@ const tokensRoutes = (app) => {
 
     res.status(201).json({ message: fullUrl });
   });
+
+  // //SignUp
+  // app.post('/SignUp', (req, res) => {
+  //
+  //   const {  uname, address,pwd,email,gender,phone,college} = req.body;
+  //   let username = req.body.username;
+  //   let password = req.body.password;
+  //   console.log("post received: %s %s", username, password);
+  //
+  // });
 };
 
 module.exports = tokensRoutes;

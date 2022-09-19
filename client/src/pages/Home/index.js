@@ -21,21 +21,21 @@ import Card from "../../components/Card";
 
 import { useStyles } from "./styles.js";
 
-import veterans from "../../assets/arts/Sparse-Ahmed-Mostafa-vetarans-2.jpg";
-import lionKing from "../../assets/arts/suresh-pydikondala-lion.jpg";
-import dreaming from "../../assets/arts/phuongvp-maybe-i-m-dreaming-by-pvpgk-deggyli.jpg";
-import modeling3d from "../../assets/arts/alan-linssen-alanlinssen-kitbashkitrender2.jpg";
-import woman from "../../assets/arts/ashline-sketch-brushes-3-2.jpg";
-import stones from "../../assets/arts/rentao_-22-10-.jpg";
-import wale from "../../assets/arts/luzhan-liu-1-1500.jpg";
-import comic from "../../assets/arts/daniel-taylor-black-and-white-2019-2.jpg";
-
-import galerie from "../../assets/galerie.svg";
-import Business from "../../assets/Business.svg";
-import shsxy from "../../assets/shsxy.svg";
-import shanghai from "../../assets/shanghai.svg";
-import SearchIcon from "@material-ui/icons/Search";
-import InputBase from "@material-ui/core/InputBase";
+// import veterans from "../../assets/arts/Sparse-Ahmed-Mostafa-vetarans-2.jpg";
+// import lionKing from "../../assets/arts/suresh-pydikondala-lion.jpg";
+// import dreaming from "../../assets/arts/phuongvp-maybe-i-m-dreaming-by-pvpgk-deggyli.jpg";
+// import modeling3d from "../../assets/arts/alan-linssen-alanlinssen-kitbashkitrender2.jpg";
+// import woman from "../../assets/arts/ashline-sketch-brushes-3-2.jpg";
+// import stones from "../../assets/arts/rentao_-22-10-.jpg";
+// import wale from "../../assets/arts/luzhan-liu-1-1500.jpg";
+// import comic from "../../assets/arts/daniel-taylor-black-and-white-2019-2.jpg";
+//
+// import galerie from "../../assets/galerie.svg";
+// import Business from "../../assets/Business.svg";
+// import shsxy from "../../assets/shsxy.svg";
+// import shanghai from "../../assets/shanghai.svg";
+// import SearchIcon from "@material-ui/icons/Search";
+// import InputBase from "@material-ui/core/InputBase";
 import {  TextField, IconButton } from '@material-ui/core';
 import { SearchOutlined } from '@material-ui/icons';
 import RotationChart from "../../components/RotationChart/index";

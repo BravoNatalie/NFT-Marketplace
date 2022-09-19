@@ -8,7 +8,7 @@ import CreateNFT from "./pages/CreateNFT/index";
 import Item from "./pages/Item/index";
 import Transfer from "./pages/Transfer/index";
 import MyNFTs from "./pages/My NFTs";
-import Login from "./pages/Login/index";
+import Login from "./pages/Login/login";
 import SignUp from "./pages/Login/signup";
 import Tab from "./pages/Tab/Tab";
 import UserSetting from "./pages/UserSetting/index";

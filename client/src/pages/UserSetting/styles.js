@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
-import 'react-pro-sidebar/dist/scss/styles.scss';
+// import 'react-pro-sidebar/dist/scss/styles.scss';
 
 const useStyles = makeStyles((theme) =>({
     userSetting: {

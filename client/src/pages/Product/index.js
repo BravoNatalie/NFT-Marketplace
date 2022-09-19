@@ -1,6 +1,6 @@
 
 import { useStyles } from "./styles.js";
-import NFTbg from "./NFTbg.jpg"
+import NFTbg from "./nft1.jpeg"
 import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -178,11 +178,11 @@ const Product=()=>{
 
             <img src={NFTbg} alt="NFTbg" className={classes.nftbg}/>
                 <div className={classes.nftheader}>
-                    <Link to="/create-nft">
-                        <Button variant="contained"  size="large" disableElevation>
-                            创建你的NFT作品
-                        </Button>
-                    </Link>
+                    {/*<Link to="/create-nft">*/}
+                    {/*    <Button variant="contained"  size="large" disableElevation>*/}
+                    {/*        创建你的NFT作品*/}
+                    {/*    </Button>*/}
+                    {/*</Link>*/}
                     <form onSubmit={onSubmit} className={classes.form}>
                         <TextField
                             id="standard-bare"

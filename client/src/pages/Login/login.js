@@ -10,8 +10,13 @@ import SignUp from "./signup";
 import ParticlesBg from "particles-bg";
 
 const Login = () => {
+    /*
+        MetaMask钱包地址
+        当用户登录时，用于判断当前钱包地址是否和用户注册时所填写的钱包地址一致
+     */
     const accountAddress = useSelector((state) => state.allNft.account);
-    console.log(accountAddress);
+    // console.log(accountAddress);
+
     const paperStyle = {padding: 20, height: '70vh', width: 500, margin: "20px auto"}
     const avatarStyle = {backgroundColor: '#1b5cbd'}
     const btnstyle = {margin: '8px 0'}
@@ -66,9 +71,9 @@ const Login = () => {
                     }
                     label="记住密码"
                 />
-                <Link href="/">
+                {/*<Link href="/">*/}
                     <Button type='submit' color='primary' variant="contained" style={btnstyle} fullWidth>登录</Button>
-                </Link>
+                {/*</Link>*/}
                 <Typography>
                     <Link href="#">
                         忘记密码 ?
