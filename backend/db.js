@@ -10,6 +10,7 @@ const config = {
 }
 var pool = mysql.createPool(config);
 
+
 //for init
 pool.getConnection((err, conn) => {
     if (!err)
@@ -31,7 +32,7 @@ pool.getConnection((err, conn) => {
 
         // //建表 @ID：整型；用户名、密码、MetaMask账户地址、性别、邮箱、电话号码、学院、专业
         let sql = `create table if not exists user  ( 
-                    id INT(11) NOT NULL UNIQUE,
+                    id INT(11) NOT NULL UNIQUE AUTO_INCREMENT,
                     uname VARCHAR(20) NOT NULL UNIQUE,
                     pwd VARCHAR(32) NOT NULL,
                     address VARCHAR(50) NOT NULL UNIQUE,
