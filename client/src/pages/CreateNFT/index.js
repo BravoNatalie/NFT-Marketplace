@@ -91,6 +91,7 @@ const CreateNFT = () => {
   }
 
   async function createNFT(event) {
+    console.log(formData)
     event.preventDefault();
     const { title, description,price} = formData;
 
