@@ -17,7 +17,7 @@ router.get("/", (req, res) => {
 
     let selectSQL = `SELECT uname,pwd FROM user WHERE uname=? AND pwd=?`;
     let selectSqlParams = [req.query.uname, req.query.pwd];
-
+    
     pool.getConnection((err, conn) => {
         if (err)
             console.debug("login db conn fail");

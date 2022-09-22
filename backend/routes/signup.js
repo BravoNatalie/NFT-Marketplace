@@ -8,7 +8,7 @@ const pool = require('../db');
 注册成功返回OK，注册返回FAIL
 */
 
-router.get("/signup", (req, res) => {
+router.get("/", (req, res) => {
     console.debug("get signup");
 
     //ALTER保证id自增紧凑
@@ -32,9 +32,10 @@ router.get("/signup", (req, res) => {
     })
 })
 
-router.post("/signup", (req, res) => {
+router.post("/", (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*')
     console.debug("post signup");
-
+    console.log(req.body)
     //ALTER保证id自增紧凑
     let insertSQL = ` ALTER TABLE user AUTO_INCREMENT =1;` + `INSERT INTO user(uname,pwd,address,email,gender,phone,college,major) VALUES(?,?,?,?,?,?,?,?)`;
     let insertSQLParams = [req.body.uname, req.body.pwd, req.body.address, req.body.email, req.body.gender, req.body.phone, req.body.college, req.body.major];
