@@ -45,9 +45,8 @@ router.post("/", (req, res) => {
             console.debug("signup db conn fail");
         conn.query(insertSQL, insertSQLParams, (err, result) => {
             if (err) {
-                res.send("FAIL");//注册失败给客户端返回FAIL
+                res.send(err.message);//注册失败给客户端返回FAIL
                 console.debug("[signup ERROR] - ", err.message);
-
                 return;
             }
             console.debug("[signup OK]");
