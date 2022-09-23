@@ -13,8 +13,10 @@ import Checkbox from '@material-ui/core/Checkbox';
 import {Link} from "react-router-dom";
 import ParticlesBg from "particles-bg";
 import {api} from "../../services/api";
+import { useHistory } from 'react-router-dom'; 
 
 const Signup = () => {
+    const history = useHistory()
     const paperStyle = {padding: '30px 20px', width: 500, margin: "20px auto"}
     const headerStyle = {margin: 0}
     const avatarStyle = {backgroundColor: '#073cad'}
@@ -60,34 +62,61 @@ const Signup = () => {
     }
     const [formData, setFormData] = useState({
         uname: "",
-        pwd: "",
-        cPwd:"",
         address: "",
         email: "",
         gender: "",
-        phone: "",
         college: "",
         major:"",
+        phone: "",
+        pwd: "",
+        cPwd:"",
     });
+
+    //key与名称转换
+    const transferTable ={
+        uname: "用户名",
+        pwd: "密码",
+        cPwd:"确认密码",
+        address: "账户地址",
+        email: "邮箱",
+        gender: "性别",
+        phone: "电话号码",
+        college: "学院",
+        major:"专业",
+    }
+    let isAgreeable = false;
+
+    function agree(){
+        isAgreeable = !isAgreeable;
+        console.log(isAgreeable);
+    }
 
     async function Signup(event) {
         console.log(formData)
+        //检查有无未输入项
+        for(let key in formData){
+            console.log(key)
+            if(formData[key]===""){
+                alert("请输入"+transferTable[key])
+                event.preventDefault()
+                return
+            }
+        }
+        //检查是否勾选协议
+        if(!isAgreeable){
+            alert("请勾选协议")
+            event.preventDefault()
+            return
+        }
+        //检查两次密码是否一致
         if(formData.pwd !== formData.cPwd){
             event.preventDefault()
             alert("两次输入的密码不一致")
             return
         }
         event.preventDefault();
+
         const {uname,pwd, address, email, gender, phone, college, major} = formData;
-        // let Fdata = new FormData();
-        // Fdata.append('uname', uname);
-        // Fdata.append('address', address);
-        // Fdata.append('pwd', pwd);
-        // Fdata.append('email', email);
-        // Fdata.append('gender', gender);
-        // Fdata.append('phone', phone);
-        // Fdata.append('college', college);
-        // Fdata.append('major', major);
         var Fdata = {}
         Fdata["uname"] = uname
         Fdata["pwd"] = pwd
@@ -97,6 +126,8 @@ const Signup = () => {
         Fdata["phone"] = phone
         Fdata["college"] = college
         Fdata["major"] = major
+
+        //发送请求
         try {
             console.log(Fdata)
             const response = await api.post("/signup", Fdata, {
@@ -105,8 +136,24 @@ const Signup = () => {
                 },
             });
             console.log("response:", response)
+            //请求成功，跳转到登陆页面
+            if(response.data === 'OK'){
+                console.log("注册成功")
+                alert("注册成功")
+                history.push('/login')
+            }
+            //请求失败，提示失败原因
+            else{
+                if(response.data.endsWith("'user.uname'"))
+                    alert("用户名已存在")
+                else if(response.data.endsWith("'user.address'"))
+                    alert("此地址已被注册过")
+                else
+                    alert("其他")
+            }
         } catch (error) {
             console.log(error);
+            alert("注册失败")
         }
     }
 
@@ -164,7 +211,9 @@ const Signup = () => {
                     <TextField fullWidth label='密码' name="pwd" type='password' value={formData.pwd} onChange={handleInputChange} placeholder="请输入密码"/>
                     <TextField fullWidth label='确认密码' name='cPwd' type='cPwd' value={formData.cPwd} onChange={handleInputChange} placeholder="确认密码"/>
                     <FormControlLabel
-                        control={<Checkbox name="checkedA"/>}
+                        control={<Checkbox
+                            onClick={agree}
+                            name="checkedA"/>}
                         label="同意所有条件"
                     />
                     {/*<Link to="/Login">*/}

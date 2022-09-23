@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useSelector} from "react-redux";
 import {Grid, Paper, Avatar, TextField, Button, Typography, Link} from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -8,6 +8,8 @@ import CancelOutlinedIcon from "@material-ui/icons/CancelOutlined";
 import SignUp from "./signup";
 
 import ParticlesBg from "particles-bg";
+import {api} from "../../services/api";
+import { useHistory } from 'react-router-dom';
 
 const Login = () => {
     /*
@@ -16,7 +18,7 @@ const Login = () => {
      */
     const accountAddress = useSelector((state) => state.allNft.account);
     // console.log(accountAddress);
-
+    const history = useHistory()
     const paperStyle = {padding: 20, height: '70vh', width: 500, margin: "20px auto"}
     const avatarStyle = {backgroundColor: '#1b5cbd'}
     const btnstyle = {margin: '8px 0'}
@@ -52,6 +54,43 @@ const Login = () => {
             }
         });
     }
+    function handleInputChange(event) {
+        let { name, value } = event.target;
+        setFormData({ ...formData, [name]: value });
+    }
+    //接受用户输入参数
+    const [formData, setFormData] = useState({
+        uname: "",
+        pwd: "",
+    });
+
+    async function login(event){
+        console.log("登陆")
+        console.log(formData)
+        event.preventDefault();
+        const {uname,pwd} = formData;
+        var Fdata = {}
+        Fdata["uname"] = uname
+        Fdata["pwd"] = pwd
+        //发送请求
+        try {
+            console.log(Fdata)
+            const response = await api.post("/login", Fdata, {
+                headers: {
+                    // "Content-Type": `multipart/form-data; boundary=${Fdata._boundary}`,
+                },
+            });
+            console.log("response:", response.data)
+            if(response.data === 'OK'){
+                alert("登陆成功")
+                history.push('/')
+            }else{
+                alert("用户名不存在或密码错误")
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
     return (
         <Grid>
             <ParticlesBg type="custom" config={config} bg={true}/>
@@ -60,8 +99,8 @@ const Login = () => {
                     <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
                     <h2>上商NFT平台</h2>
                 </Grid>
-                <TextField label='用户名' placeholder='输入用户名' name="uname" fullWidth required/>
-                <TextField label='密码' placeholder='输入密码' name="pwd" type='password' fullWidth required/>
+                <TextField onChange={handleInputChange} label='用户名' placeholder='输入用户名' name="uname" fullWidth required/>
+                <TextField onChange={handleInputChange} label='密码' placeholder='输入密码' name="pwd" type='password' fullWidth required/>
                 <FormControlLabel
                     control={
                         <Checkbox
@@ -72,7 +111,7 @@ const Login = () => {
                     label="记住密码"
                 />
                 {/*<Link href="/">*/}
-                    <Button type='submit' color='primary' variant="contained" style={btnstyle} fullWidth>登录</Button>
+                    <Button onClick={login} type='submit' color='primary' variant="contained" style={btnstyle} fullWidth>登录</Button>
                 {/*</Link>*/}
                 <Typography>
                     <Link href="#">
