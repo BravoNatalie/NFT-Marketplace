@@ -10,6 +10,7 @@ import SignUp from "./signup";
 import ParticlesBg from "particles-bg";
 import {api} from "../../services/api";
 import { useHistory } from 'react-router-dom';
+import {ex} from '../../common/global.js'
 
 const Login = () => {
     /*
@@ -90,6 +91,8 @@ const Login = () => {
             });
             console.log("response:", response.data)
             if(response.data === 'OK'){
+                ex.setData(uname)
+                console.log("存储的用户名", ex.uname)
                 alert("登陆成功")
                 history.push('/')
             }else{
