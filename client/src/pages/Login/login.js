@@ -69,6 +69,14 @@ const Login = () => {
         console.log(formData)
         event.preventDefault();
         const {uname,pwd} = formData;
+        if(uname===""){
+            alert("请输入用户名")
+            return
+        }
+        if(pwd===""){
+            alert("请输入密码")
+            return
+        }
         var Fdata = {}
         Fdata["uname"] = uname
         Fdata["pwd"] = pwd
