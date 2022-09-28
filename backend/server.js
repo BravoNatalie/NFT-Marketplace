@@ -3,6 +3,7 @@ var cors = require('cors');
 
 const login=require('./routes/login')
 const signup = require('./routes/signup')
+const find = require('./routes/find')
 
 const app = express();
 
@@ -19,6 +20,7 @@ const routes = require('./routes')(app);
 //挂载
 app.use("/login", login);
 app.use("/signup", signup);
+app.use("/find", find);
 
 const server = app.listen(3333, () => {
   console.log('Listening on port %s...', server.address().port);
