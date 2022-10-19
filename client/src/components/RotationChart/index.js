@@ -2,6 +2,7 @@ import React, { useEffect,useState,useRef } from 'react';
 import BtnSlider from './BtnSlider'
 import dataSlider from './dataSlider'
 import './Slider.css'
+import video_welcome from "../../assets/Welcome.mp4";
 
 const RotationChart = () => {
 
@@ -54,9 +55,10 @@ const RotationChart = () => {
                         key={obj.id}
                         className={slideIndex === index + 1 ? "slide active-anim" : "slide"}
                     >
-                        <img
-                            src={process.env.PUBLIC_URL + `/Imgs/img${index + 1}.jpeg`}
-                        />
+                        {/*<img*/}
+                        {/*    src={process.env.PUBLIC_URL + `/Imgs/img${index + 1}.jpeg`}*/}
+                        {/*/>*/}
+                        <video class="video" src={process.env.PUBLIC_URL + `/Video/video${index + 1}.mp4`} autoPlay loop muted></video>
                     </div>
                 )
 

@@ -177,32 +177,32 @@ const CreateNFT = () => {
               onChange={handleInputChange}
               fullWidth
             />
-            <FormControl className={classes.formControl} fullWidth>
-              <InputLabel id="demo-controlled-open-select-label">所属学院</InputLabel>
-              <Select
-                  labelId="demo-controlled-open-select-label"
-                  id="demo-controlled-open-select"
-                  value={college}
-                  onChange={handleChange}
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value={1}>工商管理学院</MenuItem>
-                <MenuItem value={2}>财务金融学院</MenuItem>
-                <MenuItem value={3}>商务经济学院</MenuItem>
-                <MenuItem value={4}>酒店管理学院</MenuItem>
-                <MenuItem value={5}>商务外语学院</MenuItem>
-                <MenuItem value={6}>艺术设计学院</MenuItem>
-                <MenuItem value={7}>商务信息学院</MenuItem>
-                <MenuItem value={8}>文法学院</MenuItem>
-                <MenuItem value={9}>马克思主义学院</MenuItem>
-                <MenuItem value={10}>上海洛桑酒店管理学院</MenuItem>
-                <MenuItem value={11}>现代流通国家级实验教学示范中心</MenuItem>
-                <MenuItem value={12}>国际教育学院、商务部国际商务官员研修基地（上海）</MenuItem>
-              </Select>
+            {/*<FormControl className={classes.formControl} fullWidth>*/}
+            {/*  <InputLabel id="demo-controlled-open-select-label">所属学院</InputLabel>*/}
+            {/*  <Select*/}
+            {/*      labelId="demo-controlled-open-select-label"*/}
+            {/*      id="demo-controlled-open-select"*/}
+            {/*      value={college}*/}
+            {/*      onChange={handleChange}*/}
+            {/*  >*/}
+            {/*    <MenuItem value="">*/}
+            {/*      <em>None</em>*/}
+            {/*    </MenuItem>*/}
+            {/*    <MenuItem value={1}>工商管理学院</MenuItem>*/}
+            {/*    <MenuItem value={2}>财务金融学院</MenuItem>*/}
+            {/*    <MenuItem value={3}>商务经济学院</MenuItem>*/}
+            {/*    <MenuItem value={4}>酒店管理学院</MenuItem>*/}
+            {/*    <MenuItem value={5}>商务外语学院</MenuItem>*/}
+            {/*    <MenuItem value={6}>艺术设计学院</MenuItem>*/}
+            {/*    <MenuItem value={7}>商务信息学院</MenuItem>*/}
+            {/*    <MenuItem value={8}>文法学院</MenuItem>*/}
+            {/*    <MenuItem value={9}>马克思主义学院</MenuItem>*/}
+            {/*    <MenuItem value={10}>上海洛桑酒店管理学院</MenuItem>*/}
+            {/*    <MenuItem value={11}>现代流通国家级实验教学示范中心</MenuItem>*/}
+            {/*    <MenuItem value={12}>国际教育学院、商务部国际商务官员研修基地（上海）</MenuItem>*/}
+            {/*  </Select>*/}
 
-            </FormControl>
+            {/*</FormControl>*/}
             <TextField
               label="价格"
               name="price"
