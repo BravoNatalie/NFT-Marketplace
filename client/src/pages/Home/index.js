@@ -20,6 +20,7 @@ import {
 import Card from "../../components/Card";
 
 import { useStyles } from "./styles.js";
+import { ex } from "../../common/global";
 
 // import veterans from "../../assets/arts/Sparse-Ahmed-Mostafa-vetarans-2.jpg";
 // import lionKing from "../../assets/arts/suresh-pydikondala-lion.jpg";
@@ -152,6 +153,7 @@ const Home = () => {
   }, [dispatch]);
 
   console.log("Nft123 :", nft);
+  console.log("islog?????", ex.isLogin)
   const [keyword, setKeyword] = useState({
     receive: "",
   });

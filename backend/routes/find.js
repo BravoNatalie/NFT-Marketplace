@@ -27,8 +27,9 @@ router.get("/", (req, res)=>{
 router.post("/", (req, res) => {
     console.debug("post find");
 
-    let selectSQL = `SELECT * where id = ?`;
-    let selectParams = [req.query.id]
+    let selectSQL = `SELECT * FROM user where uname = ?`;
+    let selectParams = [req.body.uname]
+    console.log(req.body.uname);
 
     pool.getConnection((err, conn) => {
         if (err)

@@ -64,7 +64,22 @@ const Login = () => {
         uname: "",
         pwd: "",
     });
-
+    function logOut(){
+        var temp = {
+            'uname':"",
+            'address':'',
+            'college':'',
+            'email':'',
+            'gender':'',
+            'id':'',
+            'major':'',
+            'phone':''
+        }
+        ex.setfullData(temp);
+        ex.logOut();
+        history.push('/')
+        console.log("三影片",ex)
+    }
     async function login(event){
         console.log("登陆")
         console.log(formData)
@@ -92,6 +107,20 @@ const Login = () => {
             console.log("response:", response.data)
             if(response.data === 'OK'){
                 ex.setData(uname)
+                try {
+                    console.log(Fdata)
+                    const response = await api.post("/find", Fdata, {
+                        headers: {
+                            // "Content-Type": `multipart/form-data; boundary=${Fdata._boundary}`,
+                        },
+                    });
+                    console.log("response:", response)
+                    var userData = response.data[0];
+                    ex.setfullData(userData)
+                    console.log("三影片", ex)
+                } catch (error) {
+                    console.log(error);
+                }
                 console.log("存储的用户名", ex.uname)
                 alert("登陆成功")
                 history.push('/')
@@ -110,6 +139,7 @@ const Login = () => {
                     <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
                     <h2>上商NFT平台</h2>
                 </Grid>
+                <div style={{display:ex.isLogin?'none':'block'}}>
                 <TextField onChange={handleInputChange} label='用户名' placeholder='输入用户名' name="uname" fullWidth required/>
                 <TextField onChange={handleInputChange} label='密码' placeholder='输入密码' name="pwd" type='password' fullWidth required/>
                 <FormControlLabel
@@ -134,6 +164,12 @@ const Login = () => {
                         注册
                     </Link>
                 </Typography>
+                </div>
+                <div style={{display:ex.isLogin?'block':'none'}}>
+                    <h1>已登陆用户:{ex.uname}</h1>
+                    <button onClick={logOut}>退出登陆</button>
+                </div>
+
             </Paper>
         </Grid>
     )
