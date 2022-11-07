@@ -1,4 +1,3 @@
-
 import { useStyles } from "./styles.js";
 import NFTbg from "./nft1.jpeg"
 import React, {useEffect, useState} from "react";
@@ -13,6 +12,11 @@ import { api } from "../../services/api";
 
 import ArtMarketplace from "../../contracts/ArtMarketplace.json";
 import ArtToken from "../../contracts/ArtToken.json";
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
 
 import {
     setNft,
@@ -22,7 +26,8 @@ import {
 } from "../../redux/actions/nftActions";
 import Card from "../../components/Card";
 import {IconButton, TextField} from "@material-ui/core";
-import {SearchOutlined} from "@material-ui/icons";
+import {SearchOutlined, SettingsCellSharp} from "@material-ui/icons";
+import { Search } from "semantic-ui-react";
 const Product=()=>{
     const classes = useStyles();
     const nft = useSelector((state) => state.allNft.nft);
@@ -130,7 +135,6 @@ const Product=()=>{
         init();
     }, [dispatch]);
 
-    console.log("Nft :", nft);
     const [keyword, setKeyword] = useState({
         receive: "",
     });
@@ -162,8 +166,12 @@ const Product=()=>{
             return item.name.indexOf(keyword.receive) >= 0 ;
         });
     }
-    const SearchNfts =filterByName(nft,name);
-    console.log(SearchNfts);
+    const [cend, setCend] = useState(2)
+    const [isSell, setIsSell] = useState(2)
+    let SearchNfts =filterByName(nft,name);
+    SearchNfts = PriceOrder(SearchNfts, cend)
+    SearchNfts = filSell(SearchNfts, isSell)
+    console.log("nfts",SearchNfts)
     function onChange(event) {
         let value = event.target.value;
         let newData = {};
@@ -171,37 +179,114 @@ const Product=()=>{
         setKeyword(newData);
     }
 
+    // useEffect(()=>{
+    //     setItems(SearchNfts)
+    // })
+    function PriceOrder(list1, method){
+        let list = list1
+        if(method === 0)
+            for(var i=0;i<list.length-1;i++){
+                for(var j=0;j<list.length-1;j++){
+                    if(parseInt(list[j].price)>parseInt(list[j+1].price)){
+                        var temp = list[j]
+                        list[j]=list[j+1]
+                        list[j+1]=temp
+                    }
+                }
+            }
+        else if(method === 1)
+            for(var i=0;i<list.length-1;i++){
+                for(var j=0;j<list.length-1;j++){
+                    if(parseInt(list[j].price)<parseInt(list[j+1].price)){
+                        var temp = list[j]
+                        list[j]=list[j+1]
+                        list[j+1]=temp
+                    }
+                }
+            }
+        return list
+    }
+
+    function filSell(list1, method){
+        if(method===0)
+            return list1.filter(function(item){
+                return item.isForSale
+            })
+        else if(method===1)
+            return list1.filter(function(item){
+                return item.isForSale===false
+            })
+        else  
+            return list1
+    }
+
+    function handleSell(event){
+        console.log("点击",event.target.value)
+        setIsSell(event.target.value)
+    }
+
+    function handleInputChange(event){
+        console.log("点击",event.target)
+        setCend(event.target.value)
+    }
+
     const nftItem = useSelector((state) => state.allNft.nft);
     return (
-        <div>
-        <div className={classes.main}>
+        <div >
+        {/* <div className={classes.main}> */}
 
-            <img src={NFTbg} alt="NFTbg" className={classes.nftbg}/>
-                <div className={classes.nftheader}>
-                    {/*<Link to="/create-nft">*/}
-                    {/*    <Button variant="contained"  size="large" disableElevation>*/}
-                    {/*        创建你的NFT作品*/}
-                    {/*    </Button>*/}
-                    {/*</Link>*/}
-                    <form onSubmit={onSubmit} className={classes.form}>
-                        <TextField
-                            id="standard-bare"
-                            variant="outlined"
-                            defaultValue="search..."
-                            InputProps={{
-                                endAdornment: (
-                                    <IconButton>
-                                        <SearchOutlined />
-                                    </IconButton>
-                                ),
-                            }}
-                            onChange ={onChange}
-                            value = {keyword.receive}
-                        />
-                    </form>
-
+            {/* <img src={NFTbg} alt="NFTbg" className={classes.nftbg}/> */}
+            {/* <div className={classes.nftheader}>
+                    
+                    
             </div>
-        </div>
+        </div> */}
+            <div>
+                <h3>输入商品名称</h3>
+            <form onSubmit={onSubmit} className={classes.form}>
+                <TextField
+                    id="standard-bare"
+                    variant="outlined"
+                    defaultValue="search..."
+                    InputProps={{
+                        endAdornment: (
+                            <IconButton>
+                                <SearchOutlined />
+                            </IconButton>
+                        ),
+                    }}
+                    onChange ={onChange}
+                    value = {keyword.receive}
+                />
+            </form>
+            价格
+            <Select
+                labelId="demo-controlled-open-select-label"
+                id="demo-controlled-open-select"
+                name='price'
+                onChange={handleInputChange}
+            >
+                <MenuItem value="">
+                </MenuItem>
+                <MenuItem value={0}>升序</MenuItem>
+                <MenuItem value={1}>降序</MenuItem>
+            </Select>
+            <span> </span>
+            售卖状态
+            <Select
+                labelId="demo-controlled-open-select-label"
+                id="demo-controlled-open-select"
+                name='sell'
+                onChange={handleSell}
+            >
+                <MenuItem value="">
+                </MenuItem>
+                <MenuItem value={2}>全部</MenuItem>
+                <MenuItem value={0}>在售</MenuItem>
+                <MenuItem value={1}>不在售</MenuItem>
+            </Select>
+            <span> </span>
+            </div>
             <div className={classes.allNfts}>
                 <Grid
                     container

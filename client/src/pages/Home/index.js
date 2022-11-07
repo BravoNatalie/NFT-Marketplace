@@ -54,7 +54,7 @@ const Home = () => {
       try {
         const web3 = await getWeb3();
         const accounts = await web3.eth.getAccounts();
-
+        
         if (typeof accounts === undefined) {
           alert("Please login with Metamask!");
           console.log("login to metamask");
@@ -66,7 +66,7 @@ const Home = () => {
               ArtToken.abi,
               ArtToken.networks[networkId].address
           );
-          // console.log("Contract: ", artTokenContract);
+          console.log("networkID", networkId)
           const marketplaceContract = new web3.eth.Contract(
               ArtMarketplace.abi,
               ArtMarketplace.networks[networkId].address
@@ -74,6 +74,7 @@ const Home = () => {
           const totalSupply = await artTokenContract.methods
               .totalSupply()
               .call();
+          console.log("totalSupply", totalSupply)
           const totalItemsForSale = await marketplaceContract.methods
               .totalItemsForSale()
               .call();
@@ -150,7 +151,7 @@ const Home = () => {
     init();
   }, [dispatch]);
 
-  console.log("Nft :", nft);
+  console.log("Nft123 :", nft);
   const [keyword, setKeyword] = useState({
     receive: "",
   });
@@ -256,50 +257,50 @@ const Home = () => {
       <div className={classes.homepage}>
         <section className={classes.banner}>
           <RotationChart />
-          {/*<Grid container spacing={0} xs={12} className={classes.gridBanner}>*/}
-          {/*  <Grid item xs={3}>*/}
-          {/*    <Grid container spacing={0}>*/}
-          {/*      <Grid item xs={8}>*/}
-          {/*        <img src={dreaming} alt="dreaming" className={classes.images} />*/}
-          {/*      </Grid>*/}
-          {/*      <Grid item xs={4}>*/}
-          {/*        <img src={veterans} alt="veterans" className={classes.images} />*/}
-          {/*      </Grid>*/}
-          {/*      <Grid item xs={7}>*/}
-          {/*        <img src={modeling3d} alt="modeling3d" className={classes.images} />*/}
-          {/*      </Grid>*/}
-          {/*      <Grid item xs={5}>*/}
-          {/*        <img src={lionKing} alt="lionKing" className={classes.images} />*/}
-          {/*      </Grid>*/}
-          {/*    </Grid>*/}
-          {/*  </Grid>*/}
-          {/*  <Grid item xs={6} className={classes.main}>*/}
-          {/*    <img src={shanghai} alt="shanghai" />*/}
-          {/*    <Typography>A decentralized NFT marketplace where you can expose your art.</Typography>*/}
+          {/* <Grid container spacing={0} xs={12} className={classes.gridBanner}>
+           <Grid item xs={3}>
+             <Grid container spacing={0}>
+               <Grid item xs={8}>
+                 <img src={dreaming} alt="dreaming" className={classes.images} />
+               </Grid>
+               <Grid item xs={4}>
+                 <img src={veterans} alt="veterans" className={classes.images} />
+               </Grid>
+               <Grid item xs={7}>
+                 <img src={modeling3d} alt="modeling3d" className={classes.images} />
+               </Grid>
+               <Grid item xs={5}>
+                 <img src={lionKing} alt="lionKing" className={classes.images} />
+               </Grid>
+             </Grid>
+           </Grid>
+           <Grid item xs={6} className={classes.main}>
+             <img src={shanghai} alt="shanghai" />
+             <Typography>A decentralized NFT marketplace where you can expose your art.</Typography>
 
-          {/*    <Link to="/create-nft">*/}
-          {/*      <Button variant="contained" color="primary" disableElevation>*/}
-          {/*        Mint your art*/}
-          {/*      </Button>*/}
-          {/*    </Link>*/}
-          {/*  </Grid>*/}
-          {/*  <Grid item xs={3}>*/}
-          {/*    <Grid container spacing={0}>*/}
-          {/*      <Grid item xs={8}>*/}
-          {/*        <img src={stones} alt="dreaming" className={classes.images} />*/}
-          {/*      </Grid>*/}
-          {/*      <Grid item xs={4}>*/}
-          {/*        <img src={woman} alt="veterans" className={classes.images} />*/}
-          {/*      </Grid>*/}
-          {/*      <Grid item xs={7}>*/}
-          {/*        <img src={wale} alt="modeling3d" className={classes.images} />*/}
-          {/*      </Grid>*/}
-          {/*      <Grid item xs={5}>*/}
-          {/*        <img src={comic} alt="lionKing" className={classes.images} />*/}
-          {/*      </Grid>*/}
-          {/*    </Grid>*/}
-          {/*  </Grid>*/}
-          {/*</Grid>*/}
+             <Link to="/create-nft">
+                <Button variant="contained" color="primary" disableElevation>
+                  Mint your art
+                </Button>
+              </Link>
+            </Grid>
+            <Grid item xs={3}>
+              <Grid container spacing={0}>
+                <Grid item xs={8}>
+                  <img src={stones} alt="dreaming" className={classes.images} />
+                </Grid>
+                <Grid item xs={4}>
+                  <img src={woman} alt="veterans" className={classes.images} />
+                </Grid>
+                <Grid item xs={7}>
+                  <img src={wale} alt="modeling3d" className={classes.images} />
+               </Grid>
+               <Grid item xs={5}>
+                 <img src={comic} alt="lionKing" className={classes.images} />
+               </Grid>
+             </Grid>
+           </Grid>
+          </Grid> */}
         </section>
         <section className={classes.allNfts}>
           <div className={classes.nftheader}>

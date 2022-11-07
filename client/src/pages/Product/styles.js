@@ -17,13 +17,18 @@ const useStyles = makeStyles({
     },
     nftheader:{
        position:"absolute",
-        bottom: "20%",
+        //bottom: "20%",
         display:"flex",
         justifyContent:"center",
         alignItems:"center",
-
-
     },
+    price:{
+        position:"absolute",
+        //bottom: "20%",
+        display:"flex",
+        justifyContent:"center",
+        alignItems:"center",
+    }
     // form:{
     //   backgroundColor:"white",
     // },
