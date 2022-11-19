@@ -3,7 +3,7 @@ var cors = require('cors');
 
 const login=require('./routes/login')
 const signup = require('./routes/signup')
-const find = require('./routes/find')
+const find = require('./routes/getUserById')
 
 const app = express();
 

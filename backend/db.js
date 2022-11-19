@@ -4,7 +4,7 @@ const config = {
     host: 'localhost',   // 服务器的地址
     port: 3306,          // 端口号
     user: 'root',        // 用户名
-    password: 'nfttest123',
+    password: 'mzr929929',
     database: 'nft',
     multipleStatements: true
 }
@@ -32,7 +32,7 @@ pool.getConnection((err, conn) => {
 
         // //建表 @ID：整型；用户名、密码、MetaMask账户地址、性别、邮箱、电话号码、学院、专业
         let sql = `create table if not exists user  ( 
-                    id INT(11) NOT NULL UNIQUE AUTO_INCREMENT,
+                    id INT(11) NOT NULL UNIQUE,
                     uname VARCHAR(20) NOT NULL UNIQUE,
                     pwd VARCHAR(32) NOT NULL,
                     address VARCHAR(50) NOT NULL UNIQUE,
@@ -47,7 +47,45 @@ pool.getConnection((err, conn) => {
                 uname VARCHAR(20) NOT NULL UNIQUE,
                 address VARCHAR(50) NOT NULL UNIQUE,
                 pwd VARCHAR(32) NOT NULL
-             );`;
+            );` +
+            `create table if not exists works(
+                worksId INT(11) NOT NULL UNIQUE,
+                authorId INT(11) NOT NULL,
+                introduction VARCHAR(255) NOT NULL,
+                state INT(2) NOT NULL,
+                admire INT(11) NOT NULL,
+                investment INT(11) NOT NULL,
+                investmentNum INT(11) NOT NULL,
+                attention INT(11) NOT NULL,
+                share INT(11) NOT NULL,
+                belongId INT(11) NOT NULL
+            );` +
+            `create table if not exists comments(
+                commentId INT(11) NOT NULL UNIQUE,
+                comment VARCHAR(255) NOT NULL,
+                worksId INT(11) NOT NULL,
+                commenterId INt(11) NOT NULL,
+                fatherCommentId INT(11) NOT NULL  
+            );` +//fatherCommentId是父评论ID
+            `create table if not exists transaction(
+                workId INT(11) NOT NULL ,
+                time DATETIME() NOT NULL,
+                money INT(11) NOT NULL,
+                salerId INT(11) NOT NULL,
+                buyerId INT(11) NOT NULL
+            );` +
+            `create table if not exists pictures(
+                picID INT(31) NOT NULL UNIQUE,
+                picUrl VARCHAR(255) NOT NULL UNIQUE,
+                belongWorkId INT(11) NOT NULL,
+                isSmallPic INT(1) NOT NULL
+            );`
+            +`create table if not exists priceTable(
+                workId INT(11) NOT NULL,
+                time DATETIME() NOT NULL,
+                price INT(11) NOT NULL
+            )`
+        ;
         conn.query(sql, (err, result) => {
             if (err) {
                 console.debug("create table failed");
