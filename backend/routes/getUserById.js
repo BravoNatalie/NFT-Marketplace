@@ -9,7 +9,7 @@ const pool = require("../db")
 router.get("/", (req, res)=>{
     console.debug("get find");
 
-    let selectSQL = `SELECT * from user where id = ?`;
+    let selectSQL = `SELECT * where id = ?`;
     let selectParams = [req.query.id]
 
     pool.getConnection((err, conn) => {
@@ -27,8 +27,9 @@ router.get("/", (req, res)=>{
 router.post("/", (req, res) => {
     console.debug("post find");
 
-    let selectSQL = `SELECT * from user where id = ?`;
-    let selectParams = [req.query.id]
+    let selectSQL = `SELECT * FROM user where uname = ?`;
+    let selectParams = [req.body.uname]
+    console.log(req.body.uname);
 
     pool.getConnection((err, conn) => {
         if (err)

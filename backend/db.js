@@ -4,7 +4,7 @@ const config = {
     host: 'localhost',   // 服务器的地址
     port: 3306,          // 端口号
     user: 'root',        // 用户名
-    password: 'mzr929929',
+    password: 'nfttest123',
     database: 'nft',
     multipleStatements: true
 }
@@ -16,7 +16,7 @@ pool.getConnection((err, conn) => {
     if (!err)
         return;
     console.debug("init");
-    if (err.code === 'ER_BAD_DB_ERROR') {
+    if (err.code == 'ER_BAD_DB_ERROR') {
 
         delete config.database;
         conn = mysql.createConnection(config);
@@ -68,12 +68,12 @@ pool.getConnection((err, conn) => {
                 comment VARCHAR(255) NOT NULL,
                 worksId INT(11) NOT NULL,
                 commenterId INt(11) NOT NULL,
-                fatherCommentId INT(11) NOT NULL ,
+                fatherCommentId INT(11),
                 PRIMARY KEY(commentId)
             )ENGINE=InnoDB DEFAULT CHARSET=utf8;` +//fatherCommentId是父评论ID
             `create table if not exists transaction(
                 workId INT(11) UNSIGNED AUTO_INCREMENT,
-                time DATETIME() NOT NULL,
+                time DATETIME NOT NULL,
                 money INT(11) NOT NULL,
                 salerId INT(11) NOT NULL,
                 buyerId INT(11) NOT NULL,
@@ -88,7 +88,7 @@ pool.getConnection((err, conn) => {
             )ENGINE=InnoDB DEFAULT CHARSET=utf8;`
             +`create table if not exists priceTable(
                 workId INT(11) NOT NULL,
-                time DATETIME() NOT NULL,
+                time DATETIME NOT NULL,
                 price INT(11) NOT NULL
             )ENGINE=InnoDB DEFAULT CHARSET=utf8;`
         ;
