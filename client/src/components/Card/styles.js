@@ -50,6 +50,10 @@ const useStyles = makeStyles({
   seller: {
     paddingTop: "0.1rem"
   },
+  quarter: {
+    width:"62px",
+  }
+  
 });
 
 export { useStyles };

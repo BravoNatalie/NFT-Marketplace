@@ -6,11 +6,13 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import CancelOutlinedIcon from "@material-ui/icons/CancelOutlined";
 import SignUp from "./signup";
+import { useEffect } from 'react';
 
 import ParticlesBg from "particles-bg";
 import {api} from "../../services/api";
 import { useHistory } from 'react-router-dom';
 import {ex} from '../../common/global.js'
+import { setCookie, getCookie, removeCookie } from '../../common/rememberPwd';
 
 const Login = () => {
     /*
@@ -19,7 +21,22 @@ const Login = () => {
      */
     const accountAddress = useSelector((state) => state.allNft.account);
     // console.log(accountAddress);
+    const [formData, setFormData] = useState({
+        uname: "",
+        pwd: "",
+        isRem: false,
+        isFirst: true,
+    });
     const history = useHistory()
+    useEffect(()=>{
+        if (getCookie('uname') !== '' && getCookie('pwd') !== '') {
+            var username = getCookie('uname')
+            var password = getCookie('pwd')
+            document.getElementById('uname').value=username
+            document.getElementById('pwd').value=password
+            setFormData({...formData, ["isRem"]:true, ["uname"]:username, ["pwd"]:password})
+        }
+    },[])
     const paperStyle = {padding: 20, height: '70vh', width: 500, margin: "20px auto"}
     const avatarStyle = {backgroundColor: '#1b5cbd'}
     const btnstyle = {margin: '8px 0'}
@@ -55,28 +72,46 @@ const Login = () => {
             }
         });
     }
+    
+    // console.log("111",document.getElementsByName('uname').value)
+    function rmbpsw(e){
+        setFormData({ ...formData, ["isRem"]: e.target.checked });  
+        console.log(formData)     
+    }
+    // function test(){
+    //     document.getElementById('uname').value=123
+    //     console.log("三影片",document.getElementById('uname').value)
+    // }
+    // test()
+    // console.log("yes???????")
+    // console.log(getCookie('uname'))
+    // console.log(getCookie('pwd'))
+    // if (getCookie('uname') !== '' && getCookie('pwd') !== '') {
+    //     this.props.form.setFieldsValue({
+    //     uname: getCookie('uname'),
+    //     pwd: getCookie('pwd'),
+    //     });
+    //     setFormData({...formData, ["isRem"]:true})
+    // }
     function handleInputChange(event) {
         let { name, value } = event.target;
         setFormData({ ...formData, [name]: value });
+        console.log("哈哈哈",name, value,formData)
+        // if(event.target.name=='uname'){
+        //     if(formData['isFirst']){
+        //         console.log("first time")
+        //         setFormData({...formData, ["isFirst"]:false})
+        //         document.getElementById("pwd").value=""
+        //         setFormData({...formData, ["isRem"]:false})
+        //     }else{
+        //         console.log("not first")
+        //     }
+        // }
     }
     //接受用户输入参数
-    const [formData, setFormData] = useState({
-        uname: "",
-        pwd: "",
-    });
+    
     function logOut(){
-        var temp = {
-            'uname':"",
-            'address':'',
-            'college':'',
-            'email':'',
-            'gender':'',
-            'id':'',
-            'major':'',
-            'phone':''
-        }
-        ex.setfullData(temp);
-        ex.logOut();
+        ex.clear()
         history.push('/')
         console.log("三影片",ex)
     }
@@ -84,6 +119,18 @@ const Login = () => {
         console.log("登陆")
         console.log(formData)
         event.preventDefault();
+        var Tname = document.getElementById("uname").value
+        var Tpwd = document.getElementById("pwd").value
+        setFormData({...formData, ["uname"]:Tname, ["pwd"]:Tpwd})
+        if(formData["isRem"]){
+            setCookie('uname',Tname,1)
+            setCookie('pwd',Tpwd,1)
+        }else{
+            removeCookie('uname')
+            removeCookie('pwd')
+        }
+        console.log("???",Tname)
+        console.log(formData)
         const {uname,pwd} = formData;
         if(uname===""){
             alert("请输入用户名")
@@ -132,7 +179,7 @@ const Login = () => {
         }
     }
     return (
-        <Grid>
+        <Grid >
             <ParticlesBg type="custom" config={config} bg={true}/>
             <Paper elevation={10} style={paperStyle}>
                 <Grid align='center'>
@@ -140,9 +187,9 @@ const Login = () => {
                     <h2>上商NFT平台</h2>
                 </Grid>
                 <div style={{display:ex.isLogin?'none':'block'}}>
-                <TextField onChange={handleInputChange} label='用户名' placeholder='输入用户名' name="uname" fullWidth required/>
-                <TextField onChange={handleInputChange} label='密码' placeholder='输入密码' name="pwd" type='password' fullWidth required/>
-                <FormControlLabel
+                <TextField id='uname' onChange={handleInputChange} label='用户名' placeholder='输入用户名' name="uname" fullWidth required/>
+                <TextField id='pwd' onChange={handleInputChange} label='密码' placeholder='输入密码' name="pwd" type='password' fullWidth required/>
+                <FormControlLabel id='rmb' onChange={rmbpsw} checked={formData["isRem"]}
                     control={
                         <Checkbox
                             name="checkedB"
