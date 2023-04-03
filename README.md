@@ -1,9 +1,3 @@
-<h1 align=center>
-<img src="https://github.com/Jimmy-chy/NFT-Marketplace/blob/master/client/public/home.png" />
-</h1>
-
-<div align="center">
-  
 ![License](https://img.shields.io/badge/license-MIT-737CA1?style=flat-square) 
 ![Node_Badge](https://img.shields.io/badge/node-14.16.1-green?style=flat-square)
 ![Npm_Badge](https://img.shields.io/badge/npm-6.14.12-yellow?style=flat-square)
