@@ -81,7 +81,7 @@ To run the application you'll need:
 * [Truffle](https://www.trufflesuite.com/)
 * [Ganache](https://www.trufflesuite.com/ganache)
 * Clone the repository:
-  * ```$ git clone https://github.com/BravoNatalie/NFT-Marketplace.git ```
+  * ```$ git clone git@github.com:Jimmy-chy/NFT-Marketplace.git ```
 
 
 Now go to project folder and run:
@@ -124,5 +124,5 @@ There are some things to be done in the project:
 
 ## :page_with_curl: License
 
-This project is under the **MIT license**. See the [LICENSE](https://github.com/BravoNatalie/NFT-Marketplace/blob/master/LICENSE) for more information.
+This project is under the **MIT license**. See the [LICENSE](https://github.com/Jimmy-chy/NFT-Marketplace/blob/master/LICENSE) for more information.
 
