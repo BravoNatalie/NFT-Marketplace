@@ -110,6 +110,8 @@ $ truffle migrate
 $ cd client
 $ yarn
 $ yarn start
+# if you have error with yarn start try
+$ export NODE_OPTIONS=--openssl-legacy-provider
 
 # run the backend
 $ cd backend
