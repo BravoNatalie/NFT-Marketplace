@@ -50,19 +50,25 @@ const Home = () => {
         }
 
         const networkId = await web3.eth.net.getId();
+
+        console.log('xxxxxxxxxx networkId ', networkId);
         try {
           const artTokenContract = new web3.eth.Contract(
             ArtToken.abi,
-            ArtToken.networks[networkId].address
+            "0x731540784aB499549b0554A6f6CB4A2eC3ad796e",//ArtToken.networks[networkId].address
           );
           // console.log("Contract: ", artTokenContract);
           const marketplaceContract = new web3.eth.Contract(
             ArtMarketplace.abi,
-            ArtMarketplace.networks[networkId].address
+            "0xd82F89E7D2e0Da0c2f845C89c15c92F969b2C8Ce", //ArtMarketplace.networks[networkId].address
           );
+
+          console.log('artTokenContract', artTokenContract);
           const totalSupply = await artTokenContract.methods
             .totalSupply()
             .call();
+
+            console.log('totalSupplytotalSupplytotalSupplytotalSupply ', totalSupply);
           const totalItemsForSale = await marketplaceContract.methods
             .totalItemsForSale()
             .call();
@@ -120,16 +126,16 @@ const Home = () => {
           dispatch(setMarketContract(marketplaceContract));
           dispatch(setNft(itemsList));
         } catch (error) {
-          console.error("Error", error);
+          console.error("Errorrrrrrrrrrrr", error);
           alert(
             "Contracts not deployed to the current network " +
-              networkId.toString()
+            networkId.toString()
           );
         }
       } catch (error) {
         alert(
           `Failed to load web3, accounts, or contract. Check console for details.` +
-            error
+          error
         );
         console.error(error);
       }
