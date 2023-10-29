@@ -71,7 +71,7 @@ This project was developed with the following technologies:
  
 #### **Blockchain and Smart Contracts** <sub><sup>Solidity</sup></sub>
   - [Solidity](https://docs.soliditylang.org/)
-  - [Truffle](https://www.trufflesuite.com/)
+  - [Hardhat](https://hardhat.org/)
   - [Ganache](https://www.trufflesuite.com/ganache)
 
 
@@ -85,7 +85,7 @@ To run the application you'll need:
 * [Git](https://git-scm.com)
 * [Node](https://nodejs.org/)
 * [Yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/)
-* [Truffle](https://www.trufflesuite.com/)
+* [Hardhat](https://hardhat.org/)
 * [Ganache](https://www.trufflesuite.com/ganache)
 * Clone the repository:
   * ```$ git clone https://github.com/BravoNatalie/NFT-Marketplace.git ```
@@ -104,7 +104,8 @@ $ yarn
 $ ganache-cli
 
 # deploy de contracts on the blockchain
-$ truffle migrate
+$ npx hardhat compile
+$ npx hardhat run scripts/deploy.js --network development
 
 # run the client-side
 $ cd client

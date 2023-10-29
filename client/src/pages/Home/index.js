@@ -30,6 +30,7 @@ import stones from "../../assets/arts/rentao_-22-10-.jpg";
 import wale from "../../assets/arts/luzhan-liu-1-1500.jpg";
 import comic from "../../assets/arts/daniel-taylor-black-and-white-2019-2.jpg";
 import galerie from "../../assets/galerie.svg";
+import { config } from "../../config/config";
 
 
 const Home = () => {
@@ -54,13 +55,13 @@ const Home = () => {
         console.log('xxxxxxxxxx networkId ', networkId);
         try {
           const artTokenContract = new web3.eth.Contract(
-            ArtToken.abi,
-            "0x731540784aB499549b0554A6f6CB4A2eC3ad796e",//ArtToken.networks[networkId].address
+            config.contracts.token.abi,
+            config.contracts.token.address
           );
           // console.log("Contract: ", artTokenContract);
           const marketplaceContract = new web3.eth.Contract(
-            ArtMarketplace.abi,
-            "0xd82F89E7D2e0Da0c2f845C89c15c92F969b2C8Ce", //ArtMarketplace.networks[networkId].address
+            config.contracts.market.abi,
+            config.contracts.market.address,
           );
 
           console.log('artTokenContract', artTokenContract);
