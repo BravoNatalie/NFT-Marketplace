@@ -24,5 +24,8 @@ yarn-debug.log*
 yarn-error.log*
 
 # contract dependency
-/artifacts
-./artifacts/*
+artifacts
+./artifacts
+
+# backend git ignore
+backend/imgs/*

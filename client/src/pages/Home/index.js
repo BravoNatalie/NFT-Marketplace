@@ -52,24 +52,21 @@ const Home = () => {
 
         const networkId = await web3.eth.net.getId();
 
-        console.log('xxxxxxxxxx networkId ', networkId);
         try {
           const artTokenContract = new web3.eth.Contract(
-            config.contracts.token.abi,
-            config.contracts.token.address
+            config.local.contracts.token.abi,
+            config.local.contracts.token.address
           );
           // console.log("Contract: ", artTokenContract);
           const marketplaceContract = new web3.eth.Contract(
-            config.contracts.market.abi,
-            config.contracts.market.address,
+            config.local.contracts.market.abi,
+            config.local.contracts.market.address,
           );
 
-          console.log('artTokenContract', artTokenContract);
           const totalSupply = await artTokenContract.methods
             .totalSupply()
             .call();
 
-            console.log('totalSupplytotalSupplytotalSupplytotalSupply ', totalSupply);
           const totalItemsForSale = await marketplaceContract.methods
             .totalItemsForSale()
             .call();
