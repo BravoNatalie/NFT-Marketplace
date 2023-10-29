@@ -26,6 +26,3 @@ yarn-error.log*
 # contract dependency
 artifacts
 ./artifacts
-
-# backend git ignore
-backend/imgs/*
