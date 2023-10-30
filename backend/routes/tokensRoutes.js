@@ -24,7 +24,7 @@ const tokensRoutes = (app) => {
   app.post('/tokens', upload.single('img'), async (req, res) => {
     const { filename, path } = req.file;
     const { tokenId, name, description } = req.body;
-    
+
     // const tokenId = uuidv4();
 
     let fileHash = (await addToIpfs({
@@ -38,9 +38,18 @@ const tokensRoutes = (app) => {
       image: fileHash
     };
 
+    let metaData = (await addToIpfs({
+      path: `metadata.json`,
+      content: {
+        name,
+        description,
+        image: fileHash
+      }
+    }))[0].path;
+
     fs.writeFileSync(dbFile, JSON.stringify(tokens));
 
-    var fullUrl = fileHash;
+    var fullUrl = metaData;
 
     res.status(201).json({ message: fullUrl });
   });
