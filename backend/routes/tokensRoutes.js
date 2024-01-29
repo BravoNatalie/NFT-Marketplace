@@ -3,6 +3,8 @@ const path = require('path');
 
 const { v4: uuidv4 } = require('uuid');
 const upload = require('../config/uploadConfig');
+const { addToIpfs } = require('../providers/moralis');
+const { toolsInstance } = require('../utils/tools');
 
 const tokensRoutes = (app) => {
   // VARIABLES
@@ -19,21 +21,35 @@ const tokensRoutes = (app) => {
   });
 
   // CREATE
-  app.post('/tokens', upload.single('img'), (req, res) => {
-    const { filename } = req.file;
+  app.post('/tokens', upload.single('img'), async (req, res) => {
+    const { filename, path } = req.file;
     const { tokenId, name, description } = req.body;
 
     // const tokenId = uuidv4();
 
+    let fileHash = (await addToIpfs({
+      path: `image.${toolsInstance.extractFileType(filename)}`,
+      content: fs.readFileSync(`./${path}`, { encoding: 'base64' })
+    }))[0].path;
+
     tokens[tokenId] = {
       name,
       description,
-      image: req.protocol + '://' + req.get('host') + "/images/" + filename
+      image: fileHash
     };
+
+    let metaData = (await addToIpfs({
+      path: `metadata.json`,
+      content: {
+        name,
+        description,
+        image: fileHash
+      }
+    }))[0].path;
 
     fs.writeFileSync(dbFile, JSON.stringify(tokens));
 
-    var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl + '/' + tokenId;
+    var fullUrl = metaData;
 
     res.status(201).json({ message: fullUrl });
   });

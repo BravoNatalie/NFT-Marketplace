@@ -30,6 +30,7 @@ import stones from "../../assets/arts/rentao_-22-10-.jpg";
 import wale from "../../assets/arts/luzhan-liu-1-1500.jpg";
 import comic from "../../assets/arts/daniel-taylor-black-and-white-2019-2.jpg";
 import galerie from "../../assets/galerie.svg";
+import { config } from "../../config/config";
 
 
 const Home = () => {
@@ -50,19 +51,22 @@ const Home = () => {
         }
 
         const networkId = await web3.eth.net.getId();
+
         try {
           const artTokenContract = new web3.eth.Contract(
-            ArtToken.abi,
-            ArtToken.networks[networkId].address
+            config.local.contracts.token.abi,
+            config.local.contracts.token.address
           );
           // console.log("Contract: ", artTokenContract);
           const marketplaceContract = new web3.eth.Contract(
-            ArtMarketplace.abi,
-            ArtMarketplace.networks[networkId].address
+            config.local.contracts.market.abi,
+            config.local.contracts.market.address,
           );
+
           const totalSupply = await artTokenContract.methods
             .totalSupply()
             .call();
+
           const totalItemsForSale = await marketplaceContract.methods
             .totalItemsForSale()
             .call();
@@ -120,16 +124,16 @@ const Home = () => {
           dispatch(setMarketContract(marketplaceContract));
           dispatch(setNft(itemsList));
         } catch (error) {
-          console.error("Error", error);
+          console.error("Errorrrrrrrrrrrr", error);
           alert(
             "Contracts not deployed to the current network " +
-              networkId.toString()
+            networkId.toString()
           );
         }
       } catch (error) {
         alert(
           `Failed to load web3, accounts, or contract. Check console for details.` +
-            error
+          error
         );
         console.error(error);
       }
